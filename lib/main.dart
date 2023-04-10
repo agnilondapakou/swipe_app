@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:swipe_app/pages/entreprise/profile_page.dart';
+import 'package:swipe_app/screens/entreprise/profile_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +11,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Swipe App',
-      home: LoginPage(),
+      home: ProfilePage(
+        username: "John Doe",
+        usermail: "john.doe@gmail.com",
+      ),
     );
   }
 }
