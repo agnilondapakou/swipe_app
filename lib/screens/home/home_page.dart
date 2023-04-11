@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
-      bottomNavigationBar: NavBarWidget(selectedIndex: 1,),
+      bottomNavigationBar: NavBarWidget(selectedIndex: 2,),
       body: Container(
         color: GlobalColors.secondaryColor,
         child: Column(

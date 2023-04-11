@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
 
-import '../utils/constants.dart';
-
 class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool automaticallyImplyLeading;
