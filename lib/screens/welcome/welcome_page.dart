@@ -37,7 +37,18 @@ class _WelcomePageState extends State<WelcomePage> {
               SpinKitChasingDots(
                 color: Colors.green,
                 size: 80.0,
-              )
+              ),
+              SizedBox(height: 60),
+              // powered by GEEKS CODE
+              Text(
+                'Powered by GEEKS CODE',
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 12,
+                  // color code #4D6346
+                  color: Color.fromARGB(101, 77, 99, 70),
+                ),
+              ),
             ],
           ),
         ));
