@@ -19,7 +19,9 @@ class ProfilePage extends StatelessWidget {
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
-      bottomNavigationBar: const NavBarWidget(),
+      bottomNavigationBar: NavBarWidget(
+        selectedIndex: 1,
+      ),
       body: Scaffold(
         backgroundColor: GlobalColors.secondaryColor,
         body: Center(
