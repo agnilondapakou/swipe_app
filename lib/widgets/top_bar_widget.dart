@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../utils/constants.dart';
+
 class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final bool automaticallyImplyLeading;
   // ignore: non_constant_identifier_names
   final Icon notification_icon;
   // ignore: non_constant_identifier_names
@@ -15,7 +18,7 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
       required this.notification_icon,
       // ignore: non_constant_identifier_names
       required this.profile_icon,
-      required this.notification_counter});
+      required this.notification_counter, required  this.automaticallyImplyLeading});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -25,7 +28,8 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(title),
       centerTitle: true,
-      backgroundColor: const Color(0xFF669358),
+      backgroundColor: GlobalColors.primaryColor,
+      automaticallyImplyLeading: automaticallyImplyLeading, // ajout de cette ligne
       actions: [
         //notification button with counter on stack
         Padding(

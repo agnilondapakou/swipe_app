@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swipe_app/utils/constants.dart';
 
 class NavBarWidget extends StatefulWidget {
   const NavBarWidget({super.key});
@@ -17,8 +18,8 @@ class _NavBarWidgetState extends State<NavBarWidget> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: const Color(0xFF669358),
-      unselectedItemColor: Color.fromARGB(255, 174, 200, 166),
+      backgroundColor: GlobalColors.primaryColor,
+      unselectedItemColor: const Color.fromARGB(255, 174, 200, 166),
       selectedItemColor: Colors.white,
       items: const [
         BottomNavigationBarItem(
