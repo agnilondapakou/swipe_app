@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
 
-class NavBarWidget extends StatefulWidget {
-  const NavBarWidget({Key? key}) : super(key: key);
-
+// ignore: must_be_immutable
+class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
+  late int selectedIndex = 0;
+  NavBarWidget({required this.selectedIndex, Key? key});
+  
   @override
-  _NavBarWidgetState createState() => _NavBarWidgetState();
-}
-
-class _NavBarWidgetState extends State<NavBarWidget> {
-  int selectedIndex = 1;
-
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
@@ -35,15 +31,21 @@ class _NavBarWidgetState extends State<NavBarWidget> {
       ],
       currentIndex: selectedIndex,
       onTap: (index) {
-        setState(() {
-          selectedIndex = index;
-          if (index == 0) {
-            Navigator.pushNamed(context, '/orders');
-          } else if (index == 1) {
-            Navigator.pushNamed(context, '/home');
-          }
-        });
+        selectedIndex = index;
+        if (index == 0) {
+          Navigator.pushNamed(context, '/orders');
+        } else if (index == 1) {
+          Navigator.pushNamed(context, '/home');
+        } else if (index == 2) {
+          Navigator.pushNamed(context, '/recoltes');
+        }
       },
     );
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
   }
 }

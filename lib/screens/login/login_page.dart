@@ -7,6 +7,7 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -108,8 +109,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         // Simulate login process
                         await Future.delayed(const Duration(seconds: 2));
-
-                        // Navigate to home page
+                        // ignore: use_build_context_synchronously
                         Navigator.pushReplacementNamed(context, '/home');
                       }
                     },
@@ -131,7 +131,6 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 25 ),
                   TextButton(
                     onPressed: () {
-// TODO: Implement account creation logic
                     },
                     child: Column(
                       children: [

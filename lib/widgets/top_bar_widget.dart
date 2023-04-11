@@ -19,7 +19,8 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
       required this.notification_icon,
       // ignore: non_constant_identifier_names
       required this.profile_icon,
-      required this.notification_counter, required  this.automaticallyImplyLeading});
+      // ignore: non_constant_identifier_names
+      required this.automaticallyImplyLeading, required this.notification_counter,});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -48,7 +49,7 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   decoration: BoxDecoration(
                     // color #F8995E
                     color: GlobalColors.notificationColor,
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
                   ),
                   constraints: const BoxConstraints(
                     minWidth: 16,
@@ -71,7 +72,9 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
         IconButton(
           icon: profile_icon,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/profile');
+          },
         ),
       ],
     );

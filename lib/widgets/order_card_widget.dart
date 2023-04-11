@@ -2,18 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 class OrderCardWidget extends StatelessWidget {
+  // ignore: non_constant_identifier_names
   final String product_name;
+  // ignore: non_constant_identifier_names
   final String farm_name;
   final int quantity;
   final String period;
   final String route;
+  // ignore: non_constant_identifier_names
+  final Color bg_color;
 
   const OrderCardWidget(
+      // ignore: non_constant_identifier_names
       {required this.product_name,
+      // ignore: non_constant_identifier_names
       required this.farm_name,
       required this.quantity,
       required this.period,
       required this.route,
+      // ignore: non_constant_identifier_names
+      required this.bg_color,
       super.key});
 
   @override
@@ -21,7 +29,7 @@ class OrderCardWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 150,
-      margin: EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         color: GlobalColors.whiteColor,
         borderRadius: BorderRadius.circular(15),
@@ -115,7 +123,7 @@ class OrderCardWidget extends StatelessWidget {
             width: MediaQuery.of(context).size.width - 50,
             height: 40,
             decoration: BoxDecoration(
-              color: GlobalColors.primaryColor,
+              color: bg_color,
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextButton(

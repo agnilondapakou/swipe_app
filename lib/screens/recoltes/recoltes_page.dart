@@ -6,27 +6,28 @@ import 'package:swipe_app/widgets/top_icons_widget.dart';
 import '../../widgets/nav_bar_widget.dart';
 import '../../widgets/top_bar_widget.dart';
 
-class OrdersPage extends StatefulWidget {
-  const OrdersPage({super.key});
+class RecoltesPage extends StatefulWidget {
+  const RecoltesPage({super.key});
 
   @override
-  State<OrdersPage> createState() => _OrdersPageState();
+  State<RecoltesPage> createState() => _RecoltesPageState();
 }
 
-class _OrdersPageState extends State<OrdersPage> {
+class _RecoltesPageState extends State<RecoltesPage> {
+  final int selectedIndex = 2;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.secondaryColor,
       appBar: const TopBarWidget(
-        automaticallyImplyLeading: true,
-        title: 'Commandes',
+        title: 'Recoltes',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
+        automaticallyImplyLeading: false,
       ),
       bottomNavigationBar: NavBarWidget(
-        selectedIndex: 0,
+        selectedIndex: 2,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -38,7 +39,7 @@ class _OrdersPageState extends State<OrdersPage> {
               children: [
                 TopIconsWidget(
                   header_image: Image.asset('assets/icons/orders.png'),
-                  desciption: "Visualisez les annonces d'achat",
+                  desciption: "Visualisez les recoltes disponibles",
                 ),
               ],
             ),
