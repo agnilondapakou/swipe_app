@@ -16,7 +16,7 @@ class _WelcomePageState extends State<WelcomePage> {
     super.initState();
     Timer(const Duration(seconds: 3), () {
       // Navigation à l'écran suivant après 3 secondes.
-      Navigator.pushReplacementNamed(context, '/profile');
+      Navigator.pushReplacementNamed(context, '/login');
     });
   }
 
