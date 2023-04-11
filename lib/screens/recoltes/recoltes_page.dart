@@ -24,6 +24,7 @@ class _RecoltesPageState extends State<RecoltesPage> {
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
+        automaticallyImplyLeading: false,
       ),
       bottomNavigationBar: NavBarWidget(
         selectedIndex: 2,

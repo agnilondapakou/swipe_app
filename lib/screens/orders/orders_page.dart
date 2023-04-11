@@ -25,7 +25,9 @@ class _OrdersPageState extends State<OrdersPage> {
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
-      bottomNavigationBar: NavBarWidget(selectedIndex: 0,),
+      bottomNavigationBar: NavBarWidget(
+        selectedIndex: 0,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -43,7 +45,7 @@ class _OrdersPageState extends State<OrdersPage> {
             const SizedBox(height: 20),
             Flexible(
               child: Column(
-                children: const [
+                children: [
                   OrderCardWidget(
                     product_name: "Soja",
                     farm_name: "Djidjole",
