@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 class NavBarWidget extends StatefulWidget {
-  const NavBarWidget({super.key});
+  const NavBarWidget({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _NavBarWidgetState createState() => _NavBarWidgetState();
 }
 
-// ignore: must_be_immutable
 class _NavBarWidgetState extends State<NavBarWidget> {
-  int selectedIndex = 0;
+  int selectedIndex = 1;
 
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
@@ -26,21 +24,13 @@ class _NavBarWidgetState extends State<NavBarWidget> {
           icon: Icon(Icons.list_alt_outlined),
           label: 'Commandes',
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.search_outlined),
-        //   label: 'Recherche',
-        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home_rounded),
           label: 'Accueil',
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.pin_drop_rounded),
-        //   label: 'Carte',
-        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.check_circle_outline_outlined),
-          label: 'Recoltes',
+          label: 'Récoltes',
         ),
       ],
       currentIndex: selectedIndex,
