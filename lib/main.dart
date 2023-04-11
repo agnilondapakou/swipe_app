@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swipe_app/screens/home/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
 import 'package:swipe_app/screens/welcome/welcome_page.dart';
 
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/welcome': (context) => const WelcomePage(),
         '/login': (context) => const LoginPage(),
+        '/home': (context) => const HomePage(),
       },
     );
   }
