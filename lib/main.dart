@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swipe_app/screens/entreprise/profile_page.dart';
 import 'package:swipe_app/screens/home/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
+import 'package:swipe_app/screens/orders/orders_page.dart';
 import 'package:swipe_app/screens/welcome/welcome_page.dart';
 
 void main() {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/profile': (context) => ProfilePage(username: "John", usermail: "Doe"),
         '/home': (context) => const HomePage(),
+        '/orders': (context) => OrdersPage(),
       },
     );
   }

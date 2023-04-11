@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swipe_app/utils/constants.dart';
 
 class NavBarWidget extends StatefulWidget {
   const NavBarWidget({super.key});
@@ -10,16 +11,16 @@ class NavBarWidget extends StatefulWidget {
 
 // ignore: must_be_immutable
 class _NavBarWidgetState extends State<NavBarWidget> {
-  int selectedIndex = 1;
+  int selectedIndex = 0;
 
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: const Color(0xFF669358),
-      unselectedItemColor: Color.fromARGB(255, 174, 200, 166),
-      selectedItemColor: Colors.white,
+      backgroundColor: GlobalColors.primaryColor,
+      unselectedItemColor: GlobalColors.navBarItemColor,
+      selectedItemColor: GlobalColors.whiteColor,
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.list_alt_outlined),
@@ -46,6 +47,11 @@ class _NavBarWidgetState extends State<NavBarWidget> {
       onTap: (index) {
         setState(() {
           selectedIndex = index;
+          if (index == 0) {
+            Navigator.pushNamed(context, '/orders');
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/home');
+          }
         });
       },
     );
