@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swipe_app/utils/constants.dart';
 
 import '../utils/constants.dart';
 
@@ -44,9 +45,9 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
                 right: 0,
                 child: Container(
                   padding: const EdgeInsets.all(1),
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     // color #F8995E
-                    color: Color(0xFFFF7F50),
+                    color: GlobalColors.notificationColor,
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   constraints: const BoxConstraints(
@@ -55,8 +56,8 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   child: Text(
                     notification_counter,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      color: GlobalColors.whiteColor,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
