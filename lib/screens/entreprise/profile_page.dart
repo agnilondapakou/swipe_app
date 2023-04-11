@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:swipe_app/utils/constants.dart';
 import 'package:swipe_app/widgets/nav_bar_widget.dart';
 import 'package:swipe_app/widgets/profile_image_widget.dart';
 import 'package:swipe_app/widgets/top_bar_widget.dart';
 
+// ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
   String username;
   String usermail;
@@ -12,13 +14,14 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const TopBarWidget(
-        title: 'Swipe App',
+        title: 'Profile',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
       bottomNavigationBar: const NavBarWidget(),
       body: Scaffold(
+        backgroundColor: GlobalColors.secondaryColor,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
