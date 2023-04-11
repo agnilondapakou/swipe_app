@@ -19,6 +19,7 @@ class _OrdersPageState extends State<OrdersPage> {
     return Scaffold(
       backgroundColor: GlobalColors.secondaryColor,
       appBar: const TopBarWidget(
+        automaticallyImplyLeading: true,
         title: 'Commandes',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
@@ -42,7 +43,7 @@ class _OrdersPageState extends State<OrdersPage> {
             const SizedBox(height: 20),
             Flexible(
               child: Column(
-                children: [
+                children: const [
                   OrderCardWidget(
                     product_name: "Soja",
                     farm_name: "Djidjole",

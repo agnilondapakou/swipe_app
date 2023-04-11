@@ -5,6 +5,8 @@ import 'package:swipe_app/utils/constants.dart';
 class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
   late int selectedIndex = 0;
   NavBarWidget({required this.selectedIndex, Key? key});
+  
+  @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
@@ -18,21 +20,13 @@ class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
           icon: Icon(Icons.list_alt_outlined),
           label: 'Commandes',
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.search_outlined),
-        //   label: 'Recherche',
-        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home_rounded),
           label: 'Accueil',
         ),
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.pin_drop_rounded),
-        //   label: 'Carte',
-        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.check_circle_outline_outlined),
-          label: 'Recoltes',
+          label: 'Récoltes',
         ),
       ],
       currentIndex: selectedIndex,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/constants.dart';
+
 class ProfileImageWidget extends StatelessWidget
     implements PreferredSizeWidget {
   // ignore: non_constant_identifier_names
@@ -14,7 +16,7 @@ class ProfileImageWidget extends StatelessWidget
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: 75.0,
-      backgroundColor: const Color(0xFF669358),
+      backgroundColor: GlobalColors.primaryColor,
       child: CircleAvatar(
         radius: 70.0,
         backgroundImage: profile_image.image,

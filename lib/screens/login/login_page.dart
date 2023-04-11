@@ -62,8 +62,12 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                        color: GlobalColors.textColor,
+                        fontSize: 15// set the text color
+                    ),
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 18),
                   TextFormField(
                     controller: _passwordController,
                     obscureText: true,
@@ -82,6 +86,10 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       return null;
                     },
+                    style: TextStyle(
+                      color: GlobalColors.textColor,
+                      fontSize: 15// set the text color
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
@@ -101,10 +109,8 @@ class _LoginPageState extends State<LoginPage> {
 
                         // Simulate login process
                         await Future.delayed(const Duration(seconds: 2));
-
-                        // Navigate to home page
                         // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(context, '/profile');
+                        Navigator.pushReplacementNamed(context, '/home');
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -112,17 +118,17 @@ class _LoginPageState extends State<LoginPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      minimumSize: const Size(double.infinity, 50),
+                      minimumSize: const Size(double.infinity, 55),
                     ),
                     child: const Text(
                       'Connexion',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontSize: 20,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 25 ),
                   TextButton(
                     onPressed: () {
                     },
