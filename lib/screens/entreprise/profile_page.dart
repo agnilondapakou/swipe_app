@@ -32,20 +32,20 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 20),
               Text(
                 username,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   // color code #4D6346
-                  color: Color.fromARGB(160, 77, 99, 70),
+                  color: GlobalColors.textColor,
                 ),
               ),
               const SizedBox(height: 15),
               Text(
                 usermail,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 16,
                   // color code #4D6346
-                  color: Color.fromARGB(160, 77, 99, 70),
+                  color: GlobalColors.textColor,
                 ),
               ),
               const SizedBox(height: 20),
@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                   // Navigator.pushNamed(context, );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 248, 94, 94),
+                  backgroundColor: GlobalColors.logoutColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
