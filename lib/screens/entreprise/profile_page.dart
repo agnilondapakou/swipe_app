@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
         notification_counter: '0',
       ),
       bottomNavigationBar: NavBarWidget(
-        selectedIndex: 1,
+        selectedIndex: 2,
       ),
       body: Scaffold(
         backgroundColor: GlobalColors.secondaryColor,
