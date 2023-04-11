@@ -23,21 +23,34 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Image(image: AssetImage("assets/images/farmHall.png"), width: 500),
-            SizedBox(height: 50,),
-          SpinKitChasingDots(
-            color: Colors.green,
-            size: 80.0,
-          )
-          ],
-        ),
-     )
-    );
+        backgroundColor: GlobalColors.secondaryColor,
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Image(
+                  image: AssetImage("assets/images/farmHall.png"), width: 500),
+              SizedBox(
+                height: 50,
+              ),
+              SpinKitChasingDots(
+                color: Colors.green,
+                size: 80.0,
+              ),
+              SizedBox(height: 60),
+              // powered by GEEKS CODE
+              Text(
+                'Powered by GEEKS CODE',
+                style: TextStyle(
+                  fontFamily: "Poppins",
+                  fontSize: 12,
+                  // color code #4D6346
+                  color: Color.fromARGB(101, 77, 99, 70),
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 }

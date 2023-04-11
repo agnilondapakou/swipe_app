@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                         await Future.delayed(const Duration(seconds: 2));
 
                         // Navigate to home page
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/profile');
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -145,6 +145,17 @@ class _LoginPageState extends State<LoginPage> {
                               fontWeight: FontWeight.bold,
                               fontSize: 15,
                             ),
+                          ),
+                        ),
+                        const SizedBox(height: 60),
+                        // powered by GEEKS CODE
+                        const Text(
+                          'Powered by GEEKS CODE',
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 12,
+                            // color code #4D6346
+                            color: Color.fromARGB(101, 77, 99, 70),
                           ),
                         ),
                       ],
