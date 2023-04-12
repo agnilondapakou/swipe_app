@@ -38,7 +38,7 @@ class _RecoltesPageState extends State<RecoltesPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TopIconsWidget(
-                  header_image: Image.asset('assets/icons/orders.png'),
+                  header_image: Image.asset('assets/icons/tickbox.png'),
                   desciption: "Visualisez les annonces d'achat",
                 ),
               ],
