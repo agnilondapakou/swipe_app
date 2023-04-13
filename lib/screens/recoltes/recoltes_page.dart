@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/nav_bar_widget.dart';
@@ -39,7 +37,7 @@ class _RecoltesPageState extends State<RecoltesPage> {
               children: [
                 TopIconsWidget(
                   header_image: Image.asset('assets/icons/orders.png'),
-                  desciption: "Visualisez les annonces d'achat",
+                  desciption: "Récoltes"
                 ),
               ],
             ),
