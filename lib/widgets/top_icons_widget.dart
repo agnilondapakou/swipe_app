@@ -30,8 +30,9 @@ class TopIconsWidget extends StatelessWidget implements PreferredSizeWidget {
         Text(
           desciption,
           style: TextStyle(
-            fontSize: 13,
-            color: GlobalColors.textColor,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: GlobalColors.primaryColor,
           ),
         ),
       ],

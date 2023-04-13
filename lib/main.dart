@@ -5,6 +5,7 @@ import 'package:swipe_app/screens/home/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
 import 'package:swipe_app/screens/orders/orders_page.dart';
 import 'package:swipe_app/screens/recoltes/recoltes_page.dart';
+import 'package:swipe_app/screens/search/search_page.dart';
 import 'package:swipe_app/screens/welcome/welcome_page.dart';
 
 void main() {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/orders': (context) => const OrdersPage(),
         '/recoltes': (context) => const RecoltesPage(),
         '/carte': (context) => const CartePage(),
+        '/search': (context) => const SearchPage(),
       },
     );
   }

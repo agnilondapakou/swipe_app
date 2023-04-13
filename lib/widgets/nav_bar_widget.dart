@@ -44,7 +44,7 @@ class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
         if (index == 0) {
           Navigator.pushNamed(context, '/orders');
         } else if (index == 1) {
-          print("Search");
+          Navigator.pushNamed(context, '/search');
         } else if (index == 2) {
           Navigator.pushNamed(context, '/home');
         } else if (index == 3) {
