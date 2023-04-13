@@ -38,7 +38,7 @@ class _OrdersPageState extends State<OrdersPage> {
               children: [
                 TopIconsWidget(
                   header_image: Image.asset('assets/icons/orders.png'),
-                  desciption: "Visualisez les annonces d'achat",
+                  desciption: "Commandes"
                 ),
               ],
             ),
