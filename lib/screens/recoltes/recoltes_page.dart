@@ -36,8 +36,8 @@ class _RecoltesPageState extends State<RecoltesPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TopIconsWidget(
-                  header_image: Image.asset('assets/icons/orders.png'),
-                  desciption: "Récoltes"
+                  header_image: Image.asset('assets/icons/tickbox.png'),
+                  desciption: "Visualisez les annonces d'achat",
                 ),
               ],
             ),
@@ -51,7 +51,8 @@ class _RecoltesPageState extends State<RecoltesPage> {
                     quantity: 5,
                     period: "02-25 Mars 2023",
                     route: '/login',
-                    bg_color: GlobalColors.logoutColor,
+                    bg_color: GlobalColors.primaryColor,
+                    button_text: "Annoncer un achat",
                   ),
                   OrderCardWidget(
                     product_name: "Haricot",
@@ -59,7 +60,8 @@ class _RecoltesPageState extends State<RecoltesPage> {
                     quantity: 5,
                     period: "02-25 Mars 2023",
                     route: '/login',
-                    bg_color: GlobalColors.logoutColor,
+                    bg_color: GlobalColors.primaryColor,
+                    button_text: "Annoncer un achat",
                   ),
                 ],
               ),

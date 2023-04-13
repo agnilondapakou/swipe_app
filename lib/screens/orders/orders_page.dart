@@ -53,6 +53,7 @@ class _OrdersPageState extends State<OrdersPage> {
                     period: "02-25 Mars 2023",
                     route: '/login',
                     bg_color: GlobalColors.logoutColor,
+                    button_text: "Annuler l'annonce d'achat",
                   ),
                   OrderCardWidget(
                     product_name: "Haricot",
@@ -61,6 +62,7 @@ class _OrdersPageState extends State<OrdersPage> {
                     period: "02-25 Mars 2023",
                     route: '/login',
                     bg_color: GlobalColors.logoutColor,
+                    button_text: "Annuler l'annonce d'achat",
                   ),
                 ],
               ),

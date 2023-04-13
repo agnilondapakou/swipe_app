@@ -48,7 +48,7 @@ class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
         } else if (index == 2) {
           Navigator.pushNamed(context, '/home');
         } else if (index == 3) {
-          //print("Map");
+          Navigator.pushNamed(context, '/carte');
         } else if (index == 4) {
           Navigator.pushNamed(context, '/recoltes');
         }

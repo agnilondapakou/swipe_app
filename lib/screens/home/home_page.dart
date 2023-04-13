@@ -9,6 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: GlobalColors.secondaryColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: false,
         title: 'Swipe app',
@@ -19,7 +20,6 @@ class HomePage extends StatelessWidget {
       bottomNavigationBar: NavBarWidget(
         selectedIndex: 2,
       ),
-      backgroundColor: GlobalColors.secondaryColor,
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: SingleChildScrollView(

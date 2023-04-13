@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swipe_app/screens/carte/carte_page.dart';
 import 'package:swipe_app/screens/entreprise/profile_page.dart';
 import 'package:swipe_app/screens/home/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => const HomePage(),
         '/orders': (context) => const OrdersPage(),
         '/recoltes': (context) => const RecoltesPage(),
+        '/carte': (context) => const CartePage(),
         '/search': (context) => const SearchPage(),
       },
     );
