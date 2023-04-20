@@ -3,6 +3,7 @@ import 'package:swipe_app/screens/carte/carte_page.dart';
 import 'package:swipe_app/screens/entreprise/profile_page.dart';
 import 'package:swipe_app/screens/home/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
+import 'package:swipe_app/screens/notifications/notifications_page.dart';
 import 'package:swipe_app/screens/orders/orders_page.dart';
 import 'package:swipe_app/screens/recoltes/recoltes_page.dart';
 import 'package:swipe_app/screens/search/search_page.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/recoltes': (context) => const RecoltesPage(),
         '/carte': (context) => const CartePage(),
         '/search': (context) => const SearchPage(),
+        '/notifications': (context) => const NotificationPage(),
       },
     );
   }

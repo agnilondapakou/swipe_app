@@ -10,15 +10,17 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Icon profile_icon;
   // ignore: non_constant_identifier_names
   final String notification_counter;
-  const TopBarWidget(
-      {super.key,
-      required this.title,
-      // ignore: non_constant_identifier_names
-      required this.notification_icon,
-      // ignore: non_constant_identifier_names
-      required this.profile_icon,
-      // ignore: non_constant_identifier_names
-      required this.automaticallyImplyLeading, required this.notification_counter,});
+  const TopBarWidget({
+    super.key,
+    required this.title,
+    // ignore: non_constant_identifier_names
+    required this.notification_icon,
+    // ignore: non_constant_identifier_names
+    required this.profile_icon,
+    // ignore: non_constant_identifier_names
+    required this.automaticallyImplyLeading,
+    required this.notification_counter,
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -29,7 +31,8 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
       title: Text(title),
       centerTitle: true,
       backgroundColor: GlobalColors.primaryColor,
-      automaticallyImplyLeading: automaticallyImplyLeading, // ajout de cette ligne
+      automaticallyImplyLeading:
+          automaticallyImplyLeading, // ajout de cette ligne
       actions: [
         //notification button with counter on stack
         Padding(
@@ -38,7 +41,9 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
             children: [
               IconButton(
                 icon: notification_icon,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/notifications');
+                },
               ),
               Positioned(
                 right: 0,
