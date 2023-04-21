@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
+      backgroundColor: GlobalColors.whiteColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: false,
         title: 'Swipe app',
@@ -31,16 +31,15 @@ class HomePage extends StatelessWidget {
                   Column(
                     children: [
                       SizedBox(
-                        width: 150,
-                        height: 150,
-                        child: Image.asset('assets/icons/logoFarmHall.png'),
+                        width: 120,
+                        height: 120,
+                        child: Image.asset('assets/icons/logo.png'),
                       ),
                       Text(
                         "Votre application de localisation,\nde coordination et d'acheminement\ndes produits agricoles.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
                           color: GlobalColors.textColor,
                         ),
                       ),
@@ -81,7 +80,7 @@ class HomePage extends StatelessWidget {
                   },
                   title: 'Recherche',
                   description:
-                  'Trouver des fermes avec la quantité de produit dont vous avez besoin.',
+                      'Trouver des fermes avec la quantité de produit dont vous avez besoin.',
                   imagePath: 'assets/icons/search.png',
                 ),
               ),
@@ -104,7 +103,6 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
 
 class CustomCardWidget extends StatelessWidget {
   final VoidCallback onTap;

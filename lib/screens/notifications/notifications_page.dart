@@ -21,7 +21,7 @@ class _NotificationPageState extends State<NotificationPage> {
           title: "Notifications",
           automaticallyImplyLeading: true,
           notification_icon: Icon(Icons.notifications),
-          profile_icon: Icon(Icons.person),
+          profile_icon: Icon(Icons.person_outline_rounded),
           notification_counter: "0",
         ),
         bottomNavigationBar: NavBarWidget(selectedIndex: 2),
@@ -32,26 +32,33 @@ class _NotificationPageState extends State<NotificationPage> {
                 message: "Nouvelle recolte en vue...",
                 route: '/notifications',
                 activeColor: GlobalColors.logoutColor,
+                notificationTitle: 'Nouvelle recolte en vue...',
+                notificationBody:
+                    'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
               ),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",
                 route: '/notifications',
                 activeColor: GlobalColors.logoutColor,
+                notificationTitle: 'Nouvelle recolte en vue...',
+                notificationBody:
+                    'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
               ),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",
                 route: '/notifications',
                 activeColor: GlobalColors.textColor,
+                notificationTitle: 'Nouvelle recolte en vue...',
+                notificationBody:
+                    'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
               ),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",
                 route: '/notifications',
                 activeColor: GlobalColors.textColor,
-              ),
-              NotificationWidget(
-                message: "Nouvelle recolte en vue...",
-                route: '/notifications',
-                activeColor: GlobalColors.textColor,
+                notificationTitle: 'Nouvelle recolte en vue...',
+                notificationBody:
+                    'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
               ),
             ],
           ),

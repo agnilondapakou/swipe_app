@@ -30,10 +30,9 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Image(
-                  image: AssetImage("assets/images/farmHall.png"), width: 500),
+              Image(image: AssetImage("assets/icons/logo.png"), width: 400),
               SizedBox(
-                height: 50,
+                height: 20,
               ),
               SpinKitChasingDots(
                 color: Colors.green,

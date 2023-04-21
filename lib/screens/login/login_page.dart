@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                         // Simulate login process
                         await Future.delayed(const Duration(seconds: 2));
                         // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacementNamed(context, '/');
                       }
                     },
                     style: ElevatedButton.styleFrom(
