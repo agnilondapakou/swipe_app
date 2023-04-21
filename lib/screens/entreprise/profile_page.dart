@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
         automaticallyImplyLeading: true,
         title: 'Profile',
         notification_icon: Icon(Icons.notifications_outlined),
-        profile_icon: Icon(Icons.person_outline_rounded),
+        profile_icon: Icon(Icons.person),
         notification_counter: '0',
       ),
       bottomNavigationBar: NavBarWidget(
@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
               // button logout
               ElevatedButton(
                 onPressed: () {
-                  // Navigator.pushNamed(context, );
+                  Navigator.pushNamed(context, '/login');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: GlobalColors.logoutColor,

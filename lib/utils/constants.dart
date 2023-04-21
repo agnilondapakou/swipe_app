@@ -2,7 +2,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter/material.dart';
 
 class GlobalColors {
-  static HexColor primaryColor = HexColor('#669358');
+  static HexColor primaryColor = HexColor('#20665c');
   static HexColor secondaryColor = HexColor('#F0FFEA');
   static HexColor notificationColor = HexColor('#F8995E');
   static Color logoutColor = const Color.fromARGB(255, 248, 94, 94);
