@@ -30,7 +30,7 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Image(image: AssetImage("assets/icons/logo.png"), width: 400),
+              Image(image: AssetImage("assets/icons/logo.png"), width: 150),
               SizedBox(
                 height: 20,
               ),

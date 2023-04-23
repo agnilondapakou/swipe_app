@@ -9,6 +9,7 @@ class OrderCardWidget extends StatelessWidget {
   final int quantity;
   final String period;
   final String route;
+  // ignore: non_constant_identifier_names
   final String button_text;
   // ignore: non_constant_identifier_names
   final Color bg_color;
@@ -21,6 +22,7 @@ class OrderCardWidget extends StatelessWidget {
       required this.quantity,
       required this.period,
       required this.route,
+      // ignore: non_constant_identifier_names
       required this.button_text,
       // ignore: non_constant_identifier_names
       required this.bg_color,

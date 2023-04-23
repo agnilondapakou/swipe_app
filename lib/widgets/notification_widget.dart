@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/screens/notifications/notification_details.dart';
-import 'package:swipe_app/screens/notifications/notifications_page.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 import 'custom_rext_tween.dart';
