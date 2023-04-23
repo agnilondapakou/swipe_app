@@ -24,7 +24,7 @@ class ProfilePage extends StatelessWidget {
         selectedIndex: 2,
       ),
       body: Scaffold(
-        backgroundColor: GlobalColors.secondaryColor,
+        backgroundColor: GlobalColors.whiteColor,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

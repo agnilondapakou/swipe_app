@@ -17,7 +17,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
+      backgroundColor: GlobalColors.whiteColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Recherches',
@@ -37,7 +37,8 @@ class _SearchPageState extends State<SearchPage> {
               children: [
                 TopIconsWidget(
                     header_image: Image.asset('assets/icons/search.png'),
-                    desciption: "Recherches"),
+                    desciption:
+                        "Cherchez les fermes qui ont les quantites de\nproduits dont vous avez besoins."),
               ],
             ),
             const SizedBox(height: 20),
@@ -68,7 +69,8 @@ class _SearchPageState extends State<SearchPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: "Rechercher...",
-                              hintStyle: TextStyle(color: GlobalColors.primaryColor),
+                              hintStyle:
+                                  TextStyle(color: GlobalColors.primaryColor),
                               border: InputBorder.none,
                             ),
                             style: TextStyle(
@@ -80,25 +82,6 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "Cherchez les fermes qui ont les quantites de\nproduits dont vous avez besoins.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: GlobalColors.primaryColor,
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
             const SizedBox(height: 20),

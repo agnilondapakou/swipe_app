@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: GlobalColors.whiteColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: false,
-        title: 'Swipe app',
+        title: 'Open Farm',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
@@ -126,9 +126,10 @@ class CustomCardWidget extends StatelessWidget {
         width: 350,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: GlobalColors.primaryColor, width: 3),
+          border: Border.all(color: GlobalColors.primaryColor, width: 2),
         ),
         child: Card(
+          color: GlobalColors.whiteColor,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -145,7 +146,7 @@ class CustomCardWidget extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -153,12 +154,13 @@ class CustomCardWidget extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'RobotoMono',
+                          fontFamily: 'Poppins',
                           color: GlobalColors.primaryColor,
                         ),
                       ),
                       Text(
                         description,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 12,
                           color: GlobalColors.primaryColor,

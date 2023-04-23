@@ -8,7 +8,9 @@ class TopIconsWidget extends StatelessWidget implements PreferredSizeWidget {
   final String desciption;
   const TopIconsWidget(
       // ignore: non_constant_identifier_names
-      {required this.header_image, required this.desciption, super.key});
+      {required this.header_image,
+      required this.desciption,
+      super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -29,10 +31,10 @@ class TopIconsWidget extends StatelessWidget implements PreferredSizeWidget {
         const SizedBox(height: 10),
         Text(
           desciption,
+          textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: GlobalColors.primaryColor,
+            fontSize: 15,
+            color: GlobalColors.textColor,
           ),
         ),
       ],

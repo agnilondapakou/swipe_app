@@ -26,6 +26,7 @@ class _NotificationPageState extends State<NotificationPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 10),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",
                 route: '/notifications',

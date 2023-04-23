@@ -17,7 +17,7 @@ class _OrdersPageState extends State<OrdersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
+      backgroundColor: GlobalColors.whiteColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Commandes',
@@ -37,9 +37,8 @@ class _OrdersPageState extends State<OrdersPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TopIconsWidget(
-                  header_image: Image.asset('assets/icons/orders.png'),
-                  desciption: "Commandes"
-                ),
+                    header_image: Image.asset('assets/icons/orders.png'),
+                    desciption: "Commandes"),
               ],
             ),
             const SizedBox(height: 20),
