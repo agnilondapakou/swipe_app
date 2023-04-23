@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/screens/notifications/notification_details.dart';
-import 'package:swipe_app/screens/notifications/notifications_page.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 import 'custom_rext_tween.dart';
@@ -27,16 +26,16 @@ class NotificationWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.all(15),
+        margin: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: GlobalColors.whiteColor,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
-              color: GlobalColors.primaryColor.withOpacity(0.2),
-              spreadRadius: 2,
+              color: const Color.fromARGB(194, 0, 0, 0).withOpacity(0.3),
+              spreadRadius: 0.1,
               blurRadius: 5,
-              offset: const Offset(0, 3),
+              offset: const Offset(1, 1),
             ),
           ],
         ),
@@ -45,7 +44,7 @@ class NotificationWidget extends StatelessWidget {
           children: [
             Icon(
               Icons.circle_notifications_rounded,
-              color: GlobalColors.tertiaryColor,
+              color: GlobalColors.notificationColor,
               size: 30.0,
             ),
             Text(
@@ -59,7 +58,7 @@ class NotificationWidget extends StatelessWidget {
             Icon(
               Icons.circle,
               color: activeColor,
-              size: 12.0,
+              size: 10.0,
             ),
           ],
         ),
@@ -68,7 +67,8 @@ class NotificationWidget extends StatelessWidget {
         Navigator.of(context).push(
           HeroDialogRoute(
             builder: (context) {
-              return _AddNotificationDialog(title: notificationTitle, body: notificationBody);
+              return _AddNotificationDialog(
+                  title: notificationTitle, body: notificationBody);
             },
           ),
         );
@@ -84,8 +84,7 @@ class _AddNotificationDialog extends StatelessWidget {
   final String body;
   const _AddNotificationDialog(
       {Key? key, required this.title, required this.body})
-      : super(key: key
-  );
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

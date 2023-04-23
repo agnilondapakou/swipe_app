@@ -17,7 +17,7 @@ class _RecoltesPageState extends State<RecoltesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
+      backgroundColor: GlobalColors.whiteColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Recoltes',

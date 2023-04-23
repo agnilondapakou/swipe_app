@@ -19,6 +19,7 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
     required this.profile_icon,
     // ignore: non_constant_identifier_names
     required this.automaticallyImplyLeading,
+    // ignore: non_constant_identifier_names
     required this.notification_counter,
   });
 

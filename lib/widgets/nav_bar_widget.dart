@@ -35,8 +35,8 @@ class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
         ),
       ],
       backgroundColor: GlobalColors.primaryColor,
-      unselectedItemColor: GlobalColors.navBarItemColor,
-      selectedItemColor: GlobalColors.whiteColor,
+      unselectedItemColor: GlobalColors.whiteColor,
+      selectedItemColor: GlobalColors.notificationColor,
       type: BottomNavigationBarType.fixed,
       currentIndex: selectedIndex,
       onTap: (index) {

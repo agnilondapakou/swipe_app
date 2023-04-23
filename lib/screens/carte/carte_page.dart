@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:swipe_app/widgets/nav_bar_widget.dart';
 import 'package:swipe_app/widgets/top_bar_widget.dart';
 

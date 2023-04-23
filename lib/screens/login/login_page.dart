@@ -27,25 +27,27 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
+      backgroundColor: GlobalColors.whiteColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: const EdgeInsets.all(16),
+            margin: const EdgeInsets.only(top: 100),
+            padding: const EdgeInsets.all(20),
             child: Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
-                    height: 300,
+                    height: 120,
                     child: Image(
-                        image: AssetImage("assets/images/farmHall.png"),
-                        width: 500),
+                        image: AssetImage("assets/icons/logo.png"), width: 200),
                   ),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 50),
                   TextFormField(
                     controller: _userNameController,
+                    textAlign: TextAlign.center,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       hintText: 'Email ou téléphone',
@@ -64,12 +66,13 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     style: TextStyle(
                         color: GlobalColors.textColor,
-                        fontSize: 15// set the text color
-                    ),
+                        fontSize: 15 // set the text color
+                        ),
                   ),
                   const SizedBox(height: 18),
                   TextFormField(
                     controller: _passwordController,
+                    textAlign: TextAlign.center,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'Mot de passe',
@@ -87,9 +90,9 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                     style: TextStyle(
-                      color: GlobalColors.textColor,
-                      fontSize: 15// set the text color
-                    ),
+                        color: GlobalColors.textColor,
+                        fontSize: 15 // set the text color
+                        ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
@@ -100,7 +103,8 @@ class _LoginPageState extends State<LoginPage> {
                           context: context,
                           barrierDismissible: false,
                           builder: (BuildContext context) {
-                            return const Center(child: SpinKitChasingDots(
+                            return const Center(
+                                child: SpinKitChasingDots(
                               color: Colors.green,
                               size: 60.0,
                             ));
@@ -110,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                         // Simulate login process
                         await Future.delayed(const Duration(seconds: 2));
                         // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(context, '/');
+                        Navigator.pushReplacementNamed(context, '/home');
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -123,18 +127,18 @@ class _LoginPageState extends State<LoginPage> {
                     child: const Text(
                       'Connexion',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                        fontFamily: "Poppins",
                         fontSize: 20,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 25 ),
+                  const SizedBox(height: 25),
                   TextButton(
-                    onPressed: () {
-                    },
+                    onPressed: () {},
                     child: Column(
                       children: [
-                        Text('Vous n\'avez pas de compte ? ',
+                        Text(
+                          'Vous n\'avez pas de compte ? ',
                           style: TextStyle(
                             color: GlobalColors.primaryColor,
                             fontWeight: FontWeight.bold,
@@ -161,7 +165,6 @@ class _LoginPageState extends State<LoginPage> {
                           style: TextStyle(
                             fontFamily: "Poppins",
                             fontSize: 12,
-                            // color code #4D6346
                             color: Color.fromARGB(101, 77, 99, 70),
                           ),
                         ),
