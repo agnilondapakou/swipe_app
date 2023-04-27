@@ -6,6 +6,7 @@ import 'package:swipe_app/screens/login/login_page.dart';
 import 'package:swipe_app/screens/notifications/notifications_page.dart';
 import 'package:swipe_app/screens/orders/orders_page.dart';
 import 'package:swipe_app/screens/recoltes/recoltes_page.dart';
+import 'package:swipe_app/screens/register/register.dart';
 import 'package:swipe_app/screens/search/search_page.dart';
 import 'package:swipe_app/screens/welcome/welcome_page.dart';
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/carte': (context) => const CartePage(),
         '/search': (context) => const SearchPage(),
         '/notifications': (context) => const NotificationPage(),
+        '/register': (context) => const RegisterPage(),
       },
     );
   }
