@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 
-class FarmeTopBarWidget extends StatelessWidget implements PreferredSizeWidget {
+class FarmerTopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final String sub_title;
   final bool automaticallyImplyLeading;
@@ -12,7 +12,7 @@ class FarmeTopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Icon profile_icon;
   // ignore: non_constant_identifier_names
   final String notification_counter;
-  const FarmeTopBarWidget({
+  const FarmerTopBarWidget({
     super.key,
     required this.title,
     required this.sub_title,

@@ -45,7 +45,7 @@ class FarmerNavBarWidget extends StatelessWidget
         if (index == 0) {
           Navigator.pushNamed(context, '/farmers/orders');
         } else if (index == 1) {
-          Navigator.pushNamed(context, '/farmers/home');
+          Navigator.pushNamed(context, '/farmers/recoltes');
         } else if (index == 2) {
           Navigator.pushNamed(context, '/farmers/home');
         } else if (index == 3) {

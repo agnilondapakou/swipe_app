@@ -11,7 +11,7 @@ class FarmersHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
-      appBar: const FarmeTopBarWidget(
+      appBar: const FarmerTopBarWidget(
         automaticallyImplyLeading: false,
         title: 'Open Farm',
         sub_title: 'Agriculteur',
@@ -50,7 +50,7 @@ class FarmersHomePage extends StatelessWidget {
                   height: 80,
                   child: CustomCardWidget(
                     onTap: () {
-                      Navigator.pushNamed(context, '/farmers/home');
+                      Navigator.pushNamed(context, '/farmers/recoltes');
                     },
                     title: 'Récoltes',
                     description: 'Announcez vos produits prêts à être récoltés',
