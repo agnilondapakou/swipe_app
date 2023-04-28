@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -61,7 +62,7 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   child: Text(
                     notification_counter,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       color: GlobalColors.whiteColor,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

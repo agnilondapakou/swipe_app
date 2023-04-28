@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants.dart';
 
@@ -50,10 +51,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         image: AssetImage("assets/icons/logo.png"), width: 200),
                   ),
                   const SizedBox(height: 18),
-                  const Text(
+                  Text(
                     "NB: Cette parte est reservée aux agriculteurs",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       color: Colors.red,
                       fontSize: 11,
                     ),
@@ -78,7 +79,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                       return null;
                     },
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: GlobalColors.textColor,
                         fontSize: 15 // set the text color
                         ),
@@ -103,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                       return null;
                     },
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: GlobalColors.textColor,
                         fontSize: 15 // set the text color
                         ),
@@ -128,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                       return null;
                     },
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: GlobalColors.textColor,
                         fontSize: 15 // set the text color
                         ),
@@ -153,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                       return null;
                     },
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: GlobalColors.textColor,
                         fontSize: 15 // set the text color
                         ),
@@ -178,7 +179,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         // Simulate login process
                         await Future.delayed(const Duration(seconds: 2));
                         // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacementNamed(
+                            context, '/farmers/home');
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -188,10 +190,9 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       minimumSize: const Size(double.infinity, 55),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Enregistrer',
-                      style: TextStyle(
-                        fontFamily: "Poppins",
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
                       ),
                     ),
@@ -206,7 +207,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           children: [
                             Text(
                               'Vous avez déjà un compte ? ',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 color: GlobalColors.primaryColor,
                                 fontSize: 12,
                               ),
@@ -218,7 +219,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               },
                               child: Text(
                                 'Se connecter !',
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   color: GlobalColors.quaternaryColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,
@@ -229,10 +230,9 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 60),
                         // powered by GEEKS CODE
-                        const Text(
+                        Text(
                           'Powered by GEEKS CODE',
-                          style: TextStyle(
-                            fontFamily: "Poppins",
+                          style: GoogleFonts.poppins(
                             fontSize: 12,
                             color: Color.fromARGB(101, 77, 99, 70),
                           ),

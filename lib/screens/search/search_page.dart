@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants.dart';
 import '../../widgets/nav_bar_widget.dart';
@@ -69,11 +70,11 @@ class _SearchPageState extends State<SearchPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: "Rechercher...",
-                              hintStyle:
-                                  TextStyle(color: GlobalColors.primaryColor),
+                              hintStyle: GoogleFonts.poppins(
+                                  color: GlobalColors.primaryColor),
                               border: InputBorder.none,
                             ),
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                               color: GlobalColors.primaryColor,
                             ),
                           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants.dart';
 
@@ -64,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       return null;
                     },
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: GlobalColors.textColor,
                         fontSize: 15 // set the text color
                         ),
@@ -89,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       return null;
                     },
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         color: GlobalColors.textColor,
                         fontSize: 15 // set the text color
                         ),
@@ -124,11 +125,11 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       minimumSize: const Size(double.infinity, 55),
                     ),
-                    child: const Text(
+                    child: Text(
                       'Connexion',
-                      style: TextStyle(
-                        fontFamily: "Poppins",
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
@@ -142,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Text(
                               'Vous n\'avez pas de compte ? ',
-                              style: TextStyle(
+                              style: GoogleFonts.poppins(
                                 color: GlobalColors.primaryColor,
                                 fontSize: 12,
                               ),
@@ -154,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                               },
                               child: Text(
                                 'Créez-en un !',
-                                style: TextStyle(
+                                style: GoogleFonts.poppins(
                                   color: GlobalColors.quaternaryColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 12,
@@ -165,10 +166,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 60),
                         // powered by GEEKS CODE
-                        const Text(
+                        Text(
                           'Powered by GEEKS CODE',
-                          style: TextStyle(
-                            fontFamily: "Poppins",
+                          style: GoogleFonts.poppins(
                             fontSize: 12,
                             color: Color.fromARGB(101, 77, 99, 70),
                           ),

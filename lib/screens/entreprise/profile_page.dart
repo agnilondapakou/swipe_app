@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 import 'package:swipe_app/widgets/nav_bar_widget.dart';
 import 'package:swipe_app/widgets/profile_image_widget.dart';
@@ -35,7 +36,7 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 20),
               Text(
                 username,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   // color code #4D6346
@@ -45,7 +46,7 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 15),
               Text(
                 usermail,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                   fontSize: 16,
                   // color code #4D6346
                   color: GlobalColors.textColor,
@@ -65,23 +66,21 @@ class ProfilePage extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 40, vertical: 17),
                 ),
-                child: const Text(
+                child: Text(
                   'Se deconnecter',
-                  style: TextStyle(
-                    fontFamily: "Poppins",
+                  style: GoogleFonts.poppins(
                     fontSize: 16,
                   ),
                 ),
               ),
               const SizedBox(height: 60),
               // powered by GEEKS CODE
-              const Text(
+              Text(
                 'Powered by GEEKS CODE',
-                style: TextStyle(
-                  fontFamily: "Poppins",
+                style: GoogleFonts.poppins(
                   fontSize: 12,
                   // color code #4D6346
-                  color: Color.fromARGB(101, 77, 99, 70),
+                  color: const Color.fromARGB(101, 77, 99, 70),
                 ),
               ),
             ],

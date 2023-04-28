@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../utils/constants.dart';
-import '../../widgets/nav_bar_widget.dart';
-import '../../widgets/top_bar_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/nav_bar_widget.dart';
+import '../../../widgets/top_bar_widget.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class FarmersHomePage extends StatelessWidget {
+  const FarmersHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,9 @@ class HomePage extends StatelessWidget {
                         child: Image.asset('assets/icons/logo.png'),
                       ),
                       Text(
-                        "Votre application de localisation,\nde coordination et d'acheminement\ndes produits agricoles.",
+                        "Mettez a disposition de l'entreprise OPEN\nvos produits agricoles.",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 15,
                           color: GlobalColors.textColor,
                         ),
@@ -55,7 +56,7 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/recoltes');
                   },
                   title: 'Récoltes',
-                  description: 'Afficher les produits prêts à être récoltés.',
+                  description: 'Announcez vos produits prêts à être récoltés',
                   imagePath: 'assets/icons/tickbox.png',
                 ),
               ),
@@ -66,22 +67,9 @@ class HomePage extends StatelessWidget {
                   onTap: () {
                     // Function to execute on tap
                   },
-                  title: 'Carte des fermes',
-                  description: 'Trouver les fermes les plus proches.',
+                  title: 'Mes Fermes',
+                  description: 'Gerez vos fermes.',
                   imagePath: 'assets/icons/map.png',
-                ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                height: 80,
-                child: CustomCardWidget(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/search');
-                  },
-                  title: 'Recherche',
-                  description:
-                      'Trouver des fermes avec la quantité de produit dont vous avez besoin.',
-                  imagePath: 'assets/icons/search.png',
                 ),
               ),
               const SizedBox(height: 15),
@@ -92,7 +80,7 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, '/orders');
                   },
                   title: 'Commandes',
-                  description: 'Suivez vos commandes.',
+                  description: 'Suivez les commandes de l\'entreprise OPEN.',
                   imagePath: 'assets/icons/orders.png',
                 ),
               ),
@@ -151,17 +139,16 @@ class CustomCardWidget extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          fontFamily: 'Poppins',
                           color: GlobalColors.primaryColor,
                         ),
                       ),
                       Text(
                         description,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: GlobalColors.primaryColor,
                         ),
