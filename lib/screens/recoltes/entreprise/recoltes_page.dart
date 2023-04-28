@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/constants.dart';
-import '../../widgets/entreprise/nav_bar_widget.dart';
-import '../../widgets/entreprise/order_card_widget.dart';
-import '../../widgets/entreprise/top_bar_widget.dart';
-import '../../widgets/entreprise/top_icons_widget.dart';
+import '../../../utils/constants.dart';
+import '../../../widgets/entreprise/nav_bar_widget.dart';
+import '../../../widgets/entreprise/order_card_widget.dart';
+import '../../../widgets/entreprise/top_bar_widget.dart';
+import '../../../widgets/entreprise/top_icons_widget.dart';
 
 class RecoltesPage extends StatefulWidget {
   const RecoltesPage({super.key});

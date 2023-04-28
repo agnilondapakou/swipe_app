@@ -18,7 +18,7 @@ class _FermerOrdersPageState extends State<FermerOrdersPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
-      appBar: const FarmeTopBarWidget(
+      appBar: const FarmerTopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Commandes',
         sub_title: 'Agriculteur',
