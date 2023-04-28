@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
-import 'package:swipe_app/widgets/nav_bar_widget.dart';
-import 'package:swipe_app/widgets/profile_image_widget.dart';
-import 'package:swipe_app/widgets/top_bar_widget.dart';
+import 'package:swipe_app/widgets/entreprise/nav_bar_widget.dart';
+
+import '../../widgets/entreprise/profile_image_widget.dart';
+import '../../widgets/entreprise/top_bar_widget.dart';
 
 // ignore: must_be_immutable
 class ProfilePage extends StatelessWidget {
@@ -17,6 +18,7 @@ class ProfilePage extends StatelessWidget {
       appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Profile',
+        sub_title: 'Entreprise',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person),
         notification_counter: '0',

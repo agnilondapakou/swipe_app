@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
-import 'package:swipe_app/widgets/nav_bar_widget.dart';
-import 'package:swipe_app/widgets/notification_widget.dart';
-import 'package:swipe_app/widgets/top_bar_widget.dart';
+import 'package:swipe_app/widgets/entreprise/nav_bar_widget.dart';
+
+import '../../widgets/entreprise/notification_widget.dart';
+import '../../widgets/entreprise/top_bar_widget.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -17,6 +18,7 @@ class _NotificationPageState extends State<NotificationPage> {
     return Scaffold(
         appBar: const TopBarWidget(
           title: "Notifications",
+          sub_title: 'Entreprise',
           automaticallyImplyLeading: true,
           notification_icon: Icon(Icons.notifications),
           profile_icon: Icon(Icons.person_outline_rounded),

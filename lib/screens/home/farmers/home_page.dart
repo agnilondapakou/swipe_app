@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/constants.dart';
-import '../../../widgets/nav_bar_widget.dart';
-import '../../../widgets/top_bar_widget.dart';
+import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
+import '../../../widgets/farmers/farmer_top_bar_widget.dart';
 
 class FarmersHomePage extends StatelessWidget {
   const FarmersHomePage({Key? key}) : super(key: key);
@@ -11,80 +11,91 @@ class FarmersHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
-      appBar: const TopBarWidget(
+      appBar: const FarmeTopBarWidget(
         automaticallyImplyLeading: false,
         title: 'Open Farm',
+        sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
-      bottomNavigationBar: NavBarWidget(
+      bottomNavigationBar: FarmerNavBarWidget(
         selectedIndex: 2,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: 120,
-                        height: 120,
-                        child: Image.asset('assets/icons/logo.png'),
+          child: Center(
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: Image.asset('assets/icons/logo.png'),
+                    ),
+                    Text(
+                      "Agriculteurs mettez a disposition de l'entreprise OPEN vos produits agricoles.",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        color: GlobalColors.textColor,
                       ),
-                      Text(
-                        "Mettez a disposition de l'entreprise OPEN\nvos produits agricoles.",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          color: GlobalColors.textColor,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 80,
-                child: CustomCardWidget(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/recoltes');
-                  },
-                  title: 'Récoltes',
-                  description: 'Announcez vos produits prêts à être récoltés',
-                  imagePath: 'assets/icons/tickbox.png',
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                height: 80,
-                child: CustomCardWidget(
-                  onTap: () {
-                    // Function to execute on tap
-                  },
-                  title: 'Mes Fermes',
-                  description: 'Gerez vos fermes.',
-                  imagePath: 'assets/icons/map.png',
+                const SizedBox(height: 20),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/farmers/home');
+                    },
+                    title: 'Récoltes',
+                    description: 'Announcez vos produits prêts à être récoltés',
+                    imagePath: 'assets/icons/tickbox.png',
+                  ),
                 ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                height: 80,
-                child: CustomCardWidget(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/orders');
-                  },
-                  title: 'Commandes',
-                  description: 'Suivez les commandes de l\'entreprise OPEN.',
-                  imagePath: 'assets/icons/orders.png',
+                const SizedBox(height: 15),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/farmers/home');
+                    },
+                    title: 'Mes Fermes',
+                    description: 'Ajouter et gerez vos fermes.',
+                    imagePath: 'assets/icons/map.png',
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 15),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/farmers/home');
+                    },
+                    title: 'Commandes',
+                    description: 'Suivez les commandes de l\'entreprise OPEN.',
+                    imagePath: 'assets/icons/orders.png',
+                  ),
+                ),
+                const SizedBox(height: 15),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/farmers/home');
+                    },
+                    title: 'Livreures',
+                    description:
+                        'Gerez vos livreures et assignez les à des commandes.',
+                    imagePath: 'assets/icons/delivery.png',
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -125,16 +136,16 @@ class CustomCardWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Image.asset(
                   imagePath,
-                  width: 50,
-                  height: 50,
+                  width: 48,
+                  height: 48,
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -147,9 +158,9 @@ class CustomCardWidget extends StatelessWidget {
                       ),
                       Text(
                         description,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 11,
                           color: GlobalColors.primaryColor,
                         ),
                       ),
