@@ -4,6 +4,7 @@ import 'package:swipe_app/utils/constants.dart';
 
 class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  final String sub_title;
   final bool automaticallyImplyLeading;
   // ignore: non_constant_identifier_names
   final Icon notification_icon;
@@ -14,6 +15,7 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   const TopBarWidget({
     super.key,
     required this.title,
+    required this.sub_title,
     // ignore: non_constant_identifier_names
     required this.notification_icon,
     // ignore: non_constant_identifier_names
@@ -30,7 +32,24 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(title,
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: GlobalColors.whiteColor,
+              )),
+          Text(
+            sub_title,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              color: GlobalColors.whiteColor,
+            ),
+          ),
+        ],
+      ),
       centerTitle: true,
       backgroundColor: GlobalColors.primaryColor,
       automaticallyImplyLeading:

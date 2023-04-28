@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/constants.dart';
-import '../../../widgets/nav_bar_widget.dart';
-import '../../../widgets/top_bar_widget.dart';
+import '../../../widgets/entreprise/nav_bar_widget.dart';
+import '../../../widgets/entreprise/top_bar_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
       appBar: const TopBarWidget(
         automaticallyImplyLeading: false,
         title: 'Open Farm',
+        sub_title: 'Entreprise',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
@@ -64,7 +65,7 @@ class HomePage extends StatelessWidget {
                   height: 80,
                   child: CustomCardWidget(
                     onTap: () {
-                      // Function to execute on tap
+                      Navigator.pushNamed(context, '/carte');
                     },
                     title: 'Carte des fermes',
                     description: 'Trouver les fermes les plus proches.',

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
-import '../../widgets/nav_bar_widget.dart';
-import '../../widgets/order_card_widget.dart';
-import '../../widgets/top_bar_widget.dart';
-import '../../widgets/top_icons_widget.dart';
+import '../../widgets/entreprise/nav_bar_widget.dart';
+import '../../widgets/entreprise/order_card_widget.dart';
+import '../../widgets/entreprise/top_bar_widget.dart';
+import '../../widgets/entreprise/top_icons_widget.dart';
 
 class RecoltesPage extends StatefulWidget {
   const RecoltesPage({super.key});
@@ -21,6 +21,7 @@ class _RecoltesPageState extends State<RecoltesPage> {
       appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Recoltes',
+        sub_title: 'Entreprise',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',

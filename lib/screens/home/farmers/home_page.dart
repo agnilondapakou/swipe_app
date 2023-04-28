@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/constants.dart';
-import '../../../widgets/nav_bar_widget.dart';
-import '../../../widgets/top_bar_widget.dart';
+import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
+import '../../../widgets/farmers/farmer_top_bar_widget.dart';
 
 class FarmersHomePage extends StatelessWidget {
   const FarmersHomePage({Key? key}) : super(key: key);
@@ -11,14 +11,15 @@ class FarmersHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
-      appBar: const TopBarWidget(
+      appBar: const FarmeTopBarWidget(
         automaticallyImplyLeading: false,
         title: 'Open Farm',
+        sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
-      bottomNavigationBar: NavBarWidget(
+      bottomNavigationBar: FarmerNavBarWidget(
         selectedIndex: 2,
       ),
       body: Padding(
@@ -27,26 +28,21 @@ class FarmersHomePage extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: 120,
-                          height: 120,
-                          child: Image.asset('assets/icons/logo.png'),
-                        ),
-                        Text(
-                          "Mettez a disposition de l'entreprise OPEN\nvos produits agricoles.",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            color: GlobalColors.textColor,
-                          ),
-                        ),
-                      ],
-                    )
+                    SizedBox(
+                      width: 120,
+                      height: 120,
+                      child: Image.asset('assets/icons/logo.png'),
+                    ),
+                    Text(
+                      "Agriculteurs mettez a disposition de l'entreprise OPEN vos produits agricoles.",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        fontSize: 15,
+                        color: GlobalColors.textColor,
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -54,7 +50,7 @@ class FarmersHomePage extends StatelessWidget {
                   height: 80,
                   child: CustomCardWidget(
                     onTap: () {
-                      Navigator.pushNamed(context, '/recoltes');
+                      Navigator.pushNamed(context, '/farmers/home');
                     },
                     title: 'Récoltes',
                     description: 'Announcez vos produits prêts à être récoltés',
@@ -66,10 +62,10 @@ class FarmersHomePage extends StatelessWidget {
                   height: 80,
                   child: CustomCardWidget(
                     onTap: () {
-                      // Function to execute on tap
+                      Navigator.pushNamed(context, '/farmers/home');
                     },
                     title: 'Mes Fermes',
-                    description: 'Gerez vos fermes.',
+                    description: 'Ajouter et gerez vos fermes.',
                     imagePath: 'assets/icons/map.png',
                   ),
                 ),
@@ -78,11 +74,24 @@ class FarmersHomePage extends StatelessWidget {
                   height: 80,
                   child: CustomCardWidget(
                     onTap: () {
-                      Navigator.pushNamed(context, '/orders');
+                      Navigator.pushNamed(context, '/farmers/home');
                     },
                     title: 'Commandes',
                     description: 'Suivez les commandes de l\'entreprise OPEN.',
                     imagePath: 'assets/icons/orders.png',
+                  ),
+                ),
+                const SizedBox(height: 15),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/farmers/home');
+                    },
+                    title: 'Livreures',
+                    description:
+                        'Gerez vos livreures et assignez les à des commandes.',
+                    imagePath: 'assets/icons/delivery.png',
                   ),
                 ),
               ],
