@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
 
-import '../../widgets/entreprise/nav_bar_widget.dart';
-import '../../widgets/entreprise/order_card_widget.dart';
-import '../../widgets/entreprise/top_bar_widget.dart';
-import '../../widgets/entreprise/top_icons_widget.dart';
+import '../../../widgets/entreprise/order_card_widget.dart';
+import '../../../widgets/entreprise/top_icons_widget.dart';
+import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
+import '../../../widgets/farmers/farmer_top_bar_widget.dart';
 
-class OrdersPage extends StatefulWidget {
-  const OrdersPage({super.key});
+class FermerOrdersPage extends StatefulWidget {
+  const FermerOrdersPage({super.key});
 
   @override
-  State<OrdersPage> createState() => _OrdersPageState();
+  State<FermerOrdersPage> createState() => _FermerOrdersPageState();
 }
 
-class _OrdersPageState extends State<OrdersPage> {
+class _FermerOrdersPageState extends State<FermerOrdersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
-      appBar: const TopBarWidget(
+      appBar: const FarmeTopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Commandes',
-        sub_title: 'Entreprise',
+        sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
-      bottomNavigationBar: NavBarWidget(
+      bottomNavigationBar: FarmerNavBarWidget(
         selectedIndex: 0,
       ),
       body: Padding(
@@ -39,10 +39,11 @@ class _OrdersPageState extends State<OrdersPage> {
               children: [
                 TopIconsWidget(
                     header_image: Image.asset('assets/icons/orders.png'),
-                    desciption: "Commandes"),
+                    desciption:
+                        "Retrouvez ici toute les commandes que\n vous avez reçu."),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             Flexible(
               child: Column(
                 children: [
@@ -51,18 +52,18 @@ class _OrdersPageState extends State<OrdersPage> {
                     farm_name: "Djidjole",
                     quantity: 5,
                     period: "02-25 Mars 2023",
-                    route: '/login',
-                    bg_color: GlobalColors.logoutColor,
-                    button_text: "Annuler l'annonce d'achat",
+                    route: '/farmers/orders',
+                    bg_color: GlobalColors.primaryColor,
+                    button_text: "Lancer la livraison",
                   ),
                   OrderCardWidget(
                     product_name: "Haricot",
                     farm_name: "Alafia",
                     quantity: 5,
                     period: "02-25 Mars 2023",
-                    route: '/login',
-                    bg_color: GlobalColors.logoutColor,
-                    button_text: "Annuler l'annonce d'achat",
+                    route: '/farmers/orders',
+                    bg_color: GlobalColors.primaryColor,
+                    button_text: "Lancer la livraison",
                   ),
                 ],
               ),
