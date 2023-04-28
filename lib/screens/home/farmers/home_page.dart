@@ -24,67 +24,69 @@ class FarmersHomePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: 120,
-                        height: 120,
-                        child: Image.asset('assets/icons/logo.png'),
-                      ),
-                      Text(
-                        "Mettez a disposition de l'entreprise OPEN\nvos produits agricoles.",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          color: GlobalColors.textColor,
+          child: Center(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        SizedBox(
+                          width: 120,
+                          height: 120,
+                          child: Image.asset('assets/icons/logo.png'),
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 80,
-                child: CustomCardWidget(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/recoltes');
-                  },
-                  title: 'Récoltes',
-                  description: 'Announcez vos produits prêts à être récoltés',
-                  imagePath: 'assets/icons/tickbox.png',
+                        Text(
+                          "Mettez a disposition de l'entreprise OPEN\nvos produits agricoles.",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            fontSize: 15,
+                            color: GlobalColors.textColor,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
                 ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                height: 80,
-                child: CustomCardWidget(
-                  onTap: () {
-                    // Function to execute on tap
-                  },
-                  title: 'Mes Fermes',
-                  description: 'Gerez vos fermes.',
-                  imagePath: 'assets/icons/map.png',
+                const SizedBox(height: 20),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/recoltes');
+                    },
+                    title: 'Récoltes',
+                    description: 'Announcez vos produits prêts à être récoltés',
+                    imagePath: 'assets/icons/tickbox.png',
+                  ),
                 ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                height: 80,
-                child: CustomCardWidget(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/orders');
-                  },
-                  title: 'Commandes',
-                  description: 'Suivez les commandes de l\'entreprise OPEN.',
-                  imagePath: 'assets/icons/orders.png',
+                const SizedBox(height: 15),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      // Function to execute on tap
+                    },
+                    title: 'Mes Fermes',
+                    description: 'Gerez vos fermes.',
+                    imagePath: 'assets/icons/map.png',
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 15),
+                SizedBox(
+                  height: 80,
+                  child: CustomCardWidget(
+                    onTap: () {
+                      Navigator.pushNamed(context, '/orders');
+                    },
+                    title: 'Commandes',
+                    description: 'Suivez les commandes de l\'entreprise OPEN.',
+                    imagePath: 'assets/icons/orders.png',
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -125,16 +127,16 @@ class CustomCardWidget extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Image.asset(
                   imagePath,
-                  width: 50,
-                  height: 50,
+                  width: 48,
+                  height: 48,
                 ),
               ),
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 12),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -147,9 +149,9 @@ class CustomCardWidget extends StatelessWidget {
                       ),
                       Text(
                         description,
-                        textAlign: TextAlign.center,
+                        textAlign: TextAlign.start,
                         style: GoogleFonts.poppins(
-                          fontSize: 12,
+                          fontSize: 11,
                           color: GlobalColors.primaryColor,
                         ),
                       ),
