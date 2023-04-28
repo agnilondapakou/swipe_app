@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 class OrderCardWidget extends StatelessWidget {
@@ -59,28 +60,28 @@ class OrderCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Produit :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     'Ferme :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     'Quantité :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     'Période :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
@@ -93,28 +94,28 @@ class OrderCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     product_name,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     farm_name,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     quantity.toString(),
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     period,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
@@ -136,10 +137,10 @@ class OrderCardWidget extends StatelessWidget {
               },
               child: Text(
                 button_text,
-                style: TextStyle(
+                style: GoogleFonts.poppins(
                     fontSize: 15,
                     color: GlobalColors.whiteColor,
-                    fontFamily: "Poppins"),
+                  ),
               ),
             ),
           ),

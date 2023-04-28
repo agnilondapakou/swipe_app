@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/screens/notifications/notification_details.dart';
 import 'package:swipe_app/utils/constants.dart';
 
@@ -50,7 +51,7 @@ class NotificationWidget extends StatelessWidget {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.poppins(
                 color: GlobalColors.textColor,
                 fontSize: 16.0,
               ),
@@ -110,7 +111,7 @@ class _AddNotificationDialog extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -123,7 +124,7 @@ class _AddNotificationDialog extends StatelessWidget {
                     Text(
                       body,
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 16,
                       ),
                     ),
