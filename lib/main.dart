@@ -5,7 +5,8 @@ import 'package:swipe_app/screens/home/entreprise/home_page.dart';
 import 'package:swipe_app/screens/home/farmers/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
 import 'package:swipe_app/screens/notifications/notifications_page.dart';
-import 'package:swipe_app/screens/orders/orders_page.dart';
+import 'package:swipe_app/screens/orders/entreprise/orders_page.dart';
+import 'package:swipe_app/screens/orders/farmers/farmer_orders_page.dart';
 import 'package:swipe_app/screens/recoltes/recoltes_page.dart';
 import 'package:swipe_app/screens/register/register.dart';
 import 'package:swipe_app/screens/search/search_page.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
         // Famer's routes
         '/register': (context) => const RegisterPage(),
         '/farmers/home': (context) => const FarmersHomePage(),
+        '/farmers/orders': (context) => const FermerOrdersPage(),
       },
     );
   }

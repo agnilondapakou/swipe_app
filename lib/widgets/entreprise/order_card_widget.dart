@@ -49,7 +49,7 @@ class OrderCardWidget extends StatelessWidget {
             children: [
               const Image(
                 image: AssetImage(
-                  'assets/icons/tree.png',
+                  'assets/icons/package.png',
                 ),
                 width: 100,
                 height: 100,
@@ -138,9 +138,9 @@ class OrderCardWidget extends StatelessWidget {
               child: Text(
                 button_text,
                 style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    color: GlobalColors.whiteColor,
-                  ),
+                  fontSize: 15,
+                  color: GlobalColors.whiteColor,
+                ),
               ),
             ),
           ),
