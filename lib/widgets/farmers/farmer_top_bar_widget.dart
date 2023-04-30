@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 
-class FarmerTopBarWidget extends StatelessWidget implements PreferredSizeWidget {
+class FarmerTopBarWidget extends StatelessWidget
+    implements PreferredSizeWidget {
   final String title;
   // ignore: non_constant_identifier_names
   final String sub_title;
@@ -99,7 +100,7 @@ class FarmerTopBarWidget extends StatelessWidget implements PreferredSizeWidget 
         IconButton(
           icon: profile_icon,
           onPressed: () {
-            Navigator.pushNamed(context, '/profile');
+            Navigator.pushNamed(context, '/farmers/profile');
           },
         ),
       ],

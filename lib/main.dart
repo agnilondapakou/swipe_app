@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/screens/carte/carte_page.dart';
 import 'package:swipe_app/screens/drivers/farmer_drivers_page.dart';
+import 'package:swipe_app/screens/entreprise/farmer_profile_page.dart';
 import 'package:swipe_app/screens/entreprise/profile_page.dart';
 import 'package:swipe_app/screens/fermes/fermes_pages.dart';
 import 'package:swipe_app/screens/home/entreprise/home_page.dart';
@@ -49,6 +50,11 @@ class MyApp extends StatelessWidget {
         '/farmers/recoltes': (context) => const FarmerRecoltesPage(),
         '/farmers/fermes': (context) => const FermePage(),
         '/farmers/drivers': (context) => const FarmerDriversPage(),
+        '/farmers/profile': (context) => FarmerProfilePage(
+            username: "John",
+            usermail: "johndoe@gmail.com",
+            delivery_count: 0,
+            fermes_count: 0),
       },
     );
   }
