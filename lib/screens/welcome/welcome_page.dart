@@ -31,20 +31,20 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(image: AssetImage("assets/icons/logo.png"), width: 150),
-              SizedBox(
+              const Image(image: AssetImage("assets/icons/logo.png"), width: 150),
+              const SizedBox(
                 height: 20,
               ),
-              SpinKitChasingDots(
+              const SpinKitChasingDots(
                 color: Colors.green,
                 size: 80.0,
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               Text(
                 'Powered by GEEKS CODE',
                 style: GoogleFonts.poppins(
                   fontSize: 12,
-                  color: Color.fromARGB(101, 77, 99, 70),
+                  color: const Color.fromARGB(101, 77, 99, 70),
                 ),
               ),
             ],

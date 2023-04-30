@@ -45,7 +45,17 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image(
                         image: AssetImage("assets/icons/logo.png"), width: 200),
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 18),
+                  Text(
+                    "Connectez-vous à votre compte",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                      color: GlobalColors.textColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   TextFormField(
                     controller: _userNameController,
                     textAlign: TextAlign.center,
@@ -129,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                       'Connexion',
                       style: GoogleFonts.poppins(
                         fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -156,9 +166,9 @@ class _LoginPageState extends State<LoginPage> {
                               child: Text(
                                 'Créez-en un !',
                                 style: GoogleFonts.poppins(
-                                  color: GlobalColors.quaternaryColor,
+                                  color: GlobalColors.notificationColor,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 12,
+                                  fontSize: 15,
                                 ),
                               ),
                             ),
@@ -170,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                           'Powered by GEEKS CODE',
                           style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: Color.fromARGB(101, 77, 99, 70),
+                            color: const Color.fromARGB(101, 77, 99, 70),
                           ),
                         ),
                       ],

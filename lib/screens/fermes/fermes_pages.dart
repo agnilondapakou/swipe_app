@@ -4,31 +4,31 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/entreprise/top_icons_widget.dart';
 import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
-import '../../../widgets/farmers/farmer_recolte_card_widget.dart';
 import '../../../widgets/farmers/farmer_top_bar_widget.dart';
+import '../../widgets/farmers/farme_card_widget.dart';
 
-class FarmerRecoltesPage extends StatefulWidget {
-  const FarmerRecoltesPage({super.key});
+class FermePage extends StatefulWidget {
+  const FermePage({super.key});
 
   @override
-  State<FarmerRecoltesPage> createState() => _FarmerRecoltesPageState();
+  State<FermePage> createState() => _FermePageState();
 }
 
-class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
+class _FermePageState extends State<FermePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
       appBar: const FarmerTopBarWidget(
         automaticallyImplyLeading: true,
-        title: 'Recoltes',
+        title: 'Fermes',
         sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
       bottomNavigationBar: FarmerNavBarWidget(
-        selectedIndex: 1,
+        selectedIndex: 3,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -38,8 +38,8 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TopIconsWidget(
-                  header_image: Image.asset('assets/icons/rice.png',
-                  
+                  header_image: Image.asset(
+                    'assets/icons/location.png',
                   ),
                   desciption: "Annocez vos produits prêts à être récoltés",
                 ),
@@ -58,7 +58,7 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                   // new popup with form to add an recolte
                 },
                 child: Text(
-                  "Nouvelle recolte",
+                  "Nouvelle ferme",
                   style: GoogleFonts.poppins(
                     fontSize: 15,
                     color: GlobalColors.whiteColor,
@@ -69,26 +69,20 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
             const SizedBox(height: 10),
             Flexible(
               child: Column(
-                children: [
-                  FarmerRecolteCardWidget(
-                    product_name: "Soja",
-                    farm_name: "Djidjole",
-                    quantity: 5,
-                    period: "02-25 Mars 2023",
-                    delete_route: '',
+                children: const [
+                  FermeCardWidget(
+                    ferme_name: "Djidjole",
+                    city: "Kara",
+                    phone_number: "90 90 90 90",
                     update_route: '',
-                    bg_color: GlobalColors.logoutColor,
-                    button_text: "Retirer l'annonce",
+                    delete_route: '',
                   ),
-                  FarmerRecolteCardWidget(
-                    product_name: "Haricot",
-                    farm_name: "Djidjole",
-                    quantity: 5,
-                    period: "02-25 Mars 2023",
-                    delete_route: '',
+                  FermeCardWidget(
+                    ferme_name: "Djidjole",
+                    city: "Kara",
+                    phone_number: "90 90 90 90",
                     update_route: '',
-                    bg_color: GlobalColors.logoutColor,
-                    button_text: "Retirer l'annonce",
+                    delete_route: '',
                   ),
                 ],
               ),

@@ -62,7 +62,7 @@ class FarmersHomePage extends StatelessWidget {
                   height: 80,
                   child: CustomCardWidget(
                     onTap: () {
-                      Navigator.pushNamed(context, '/farmers/home');
+                      Navigator.pushNamed(context, '/farmers/fermes');
                     },
                     title: 'Mes Fermes',
                     description: 'Ajouter et gerez vos fermes.',
