@@ -86,7 +86,7 @@ class FarmersHomePage extends StatelessWidget {
                   height: 80,
                   child: CustomCardWidget(
                     onTap: () {
-                      Navigator.pushNamed(context, '/farmers/home');
+                      Navigator.pushNamed(context, '/farmers/drivers');
                     },
                     title: 'Livreures',
                     description:

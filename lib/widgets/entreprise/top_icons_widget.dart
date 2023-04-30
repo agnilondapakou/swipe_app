@@ -34,7 +34,7 @@ class TopIconsWidget extends StatelessWidget implements PreferredSizeWidget {
           desciption,
           textAlign: TextAlign.center,
           style: GoogleFonts.poppins(
-            fontSize: 15,
+            fontSize: 12,
             color: GlobalColors.textColor,
           ),
         ),
