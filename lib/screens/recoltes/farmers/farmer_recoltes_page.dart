@@ -38,8 +38,8 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TopIconsWidget(
-                  header_image: Image.asset('assets/icons/rice.png',
-                  
+                  header_image: Image.asset(
+                    'assets/icons/tree.png',
                   ),
                   desciption: "Annocez vos produits prêts à être récoltés",
                 ),

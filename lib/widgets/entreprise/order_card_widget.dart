@@ -49,7 +49,7 @@ class OrderCardWidget extends StatelessWidget {
             children: [
               const Image(
                 image: AssetImage(
-                  'assets/icons/tree.png',
+                  'assets/icons/package.png',
                 ),
                 width: 100,
                 height: 100,
