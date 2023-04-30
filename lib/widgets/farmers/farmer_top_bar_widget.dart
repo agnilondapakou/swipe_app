@@ -4,6 +4,7 @@ import 'package:swipe_app/utils/constants.dart';
 
 class FarmerTopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  // ignore: non_constant_identifier_names
   final String sub_title;
   final bool automaticallyImplyLeading;
   // ignore: non_constant_identifier_names
@@ -15,6 +16,7 @@ class FarmerTopBarWidget extends StatelessWidget implements PreferredSizeWidget 
   const FarmerTopBarWidget({
     super.key,
     required this.title,
+    // ignore: non_constant_identifier_names
     required this.sub_title,
     // ignore: non_constant_identifier_names
     required this.notification_icon,

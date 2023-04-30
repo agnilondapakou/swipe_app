@@ -52,11 +52,12 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 18),
                   Text(
-                    "NB: Cette parte est reservée aux agriculteurs",
+                    "Créer un compte",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
-                      color: Colors.red,
-                      fontSize: 11,
+                      color: GlobalColors.textColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
                   const SizedBox(height: 18),
@@ -193,11 +194,32 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Text(
                       'Enregistrer',
                       style: GoogleFonts.poppins(
+                        color: GlobalColors.whiteColor,
+                        fontWeight: FontWeight.bold,
                         fontSize: 20,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 18),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.info_outline_rounded,
+                        color: Colors.red,
+                        size: 15,
+                      ),
+                      Text(
+                        " Cette parte est reservée aux agriculteurs",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          color: Colors.red,
+                          fontSize: 11,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
                   TextButton(
                     onPressed: () {},
                     child: Column(
@@ -220,9 +242,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: Text(
                                 'Se connecter !',
                                 style: GoogleFonts.poppins(
-                                  color: GlobalColors.quaternaryColor,
+                                  color: GlobalColors.notificationColor,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 12,
+                                  fontSize: 15,
                                 ),
                               ),
                             ),
@@ -234,7 +256,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           'Powered by GEEKS CODE',
                           style: GoogleFonts.poppins(
                             fontSize: 12,
-                            color: Color.fromARGB(101, 77, 99, 70),
+                            color: const Color.fromARGB(101, 77, 99, 70),
                           ),
                         ),
                       ],
