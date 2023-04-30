@@ -66,7 +66,7 @@ class FarmersHomePage extends StatelessWidget {
                     },
                     title: 'Mes Fermes',
                     description: 'Ajouter et gerez vos fermes.',
-                    imagePath: 'assets/icons/map.png',
+                    imagePath: 'assets/icons/ferme.png',
                   ),
                 ),
                 const SizedBox(height: 15),

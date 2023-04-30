@@ -39,7 +39,7 @@ class _FermePageState extends State<FermePage> {
               children: [
                 TopIconsWidget(
                   header_image: Image.asset(
-                    'assets/icons/location.png',
+                    'assets/icons/ferme.png',
                   ),
                   desciption: "Annocez vos produits prêts à être récoltés",
                 ),

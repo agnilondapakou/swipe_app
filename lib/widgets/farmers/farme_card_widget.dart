@@ -51,7 +51,7 @@ class FermeCardWidget extends StatelessWidget {
               children: [
                 const Image(
                   image: AssetImage(
-                    'assets/icons/location.png',
+                    'assets/icons/ferme.png',
                   ),
                   width: 70,
                   height: 70,
