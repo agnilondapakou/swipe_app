@@ -3,7 +3,7 @@ import 'package:swipe_app/utils/constants.dart';
 
 // ignore: must_be_immutable
 class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  late int selectedIndex = 2;
+  late int selectedIndex = 0;
   NavBarWidget({super.key, required this.selectedIndex});
 
   @override
@@ -54,11 +54,9 @@ class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
         } else if (index == 3) {
           Navigator.pushNamed(context, '/search');
         } else if (index == 4) {
-          Navigator.pushNamed(context, '/recoltes');
+          Navigator.pushNamed(context, '/farmers');
         } else if (index == 5) {
-          Navigator.pushNamed(context, '/recoltes');
-        } else if (index == 6) {
-          Navigator.pushNamed(context, '/recoltes');
+          Navigator.pushNamed(context, '/drivers');
         }
       },
     );

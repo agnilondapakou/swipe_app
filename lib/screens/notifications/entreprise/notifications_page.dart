@@ -25,7 +25,7 @@ class _NotificationPageState extends State<NotificationPage> {
           profile_icon: Icon(Icons.person_outline_rounded),
           notification_counter: "0",
         ),
-        bottomNavigationBar: NavBarWidget(selectedIndex: 2),
+        bottomNavigationBar: NavBarWidget(selectedIndex: 0),
         body: SingleChildScrollView(
           child: Column(
             children: [

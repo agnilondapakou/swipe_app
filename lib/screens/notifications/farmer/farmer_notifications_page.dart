@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
-import 'package:swipe_app/widgets/entreprise/nav_bar_widget.dart';
 import 'package:swipe_app/widgets/entreprise/top_icons_widget.dart';
 
 import '../../../widgets/entreprise/notification_widget.dart';
-import '../../../widgets/entreprise/top_bar_widget.dart';
 import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
 import '../../../widgets/farmers/farmer_top_bar_widget.dart';
 

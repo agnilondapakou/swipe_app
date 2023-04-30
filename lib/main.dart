@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/screens/carte/carte_page.dart';
-import 'package:swipe_app/screens/drivers/farmer_drivers_page.dart';
-import 'package:swipe_app/screens/entreprise/farmer_profile_page.dart';
-import 'package:swipe_app/screens/entreprise/profile_page.dart';
+import 'package:swipe_app/screens/drivers/entreprise/drivers_page.dart';
+import 'package:swipe_app/screens/drivers/farmer/farmer_drivers_page.dart';
+import 'package:swipe_app/screens/farmers/farmers_page.dart';
+import 'package:swipe_app/screens/profile/farmer_profile_page.dart';
+import 'package:swipe_app/screens/profile/profile_page.dart';
 import 'package:swipe_app/screens/fermes/fermes_pages.dart';
 import 'package:swipe_app/screens/home/entreprise/home_page.dart';
 import 'package:swipe_app/screens/home/farmers/home_page.dart';
@@ -43,6 +45,8 @@ class MyApp extends StatelessWidget {
         '/carte': (context) => const CartePage(),
         '/search': (context) => const SearchPage(),
         '/notifications': (context) => const NotificationPage(),
+        '/drivers': (context) => const DriversPage(),
+        '/farmers': (context) => const FarmersPage(),
 
         // Famer's routes
         '/register': (context) => const RegisterPage(),
