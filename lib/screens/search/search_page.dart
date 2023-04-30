@@ -28,7 +28,7 @@ class _SearchPageState extends State<SearchPage> {
         notification_counter: '0',
       ),
       bottomNavigationBar: NavBarWidget(
-        selectedIndex: 1,
+        selectedIndex: 3,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),

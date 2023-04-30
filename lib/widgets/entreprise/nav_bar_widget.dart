@@ -14,24 +14,28 @@ class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
+          icon: Icon(Icons.home_rounded),
+          label: 'Accueil',
+        ),
+        BottomNavigationBarItem(
           icon: Icon(Icons.list_alt_outlined),
           label: 'Commandes',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.pin_drop_outlined),
+          label: 'Fermes',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.search_rounded),
           label: 'Recherches',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.home_rounded),
-          label: 'Accueil',
+          icon: Icon(Icons.person_add_alt_1),
+          label: 'Agriculteurs',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.pin_drop_outlined),
-          label: 'Carte',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.check_circle_outline_outlined),
-          label: 'Récoltes',
+          icon: Icon(Icons.drive_eta_outlined),
+          label: 'Livreurs',
         ),
       ],
       backgroundColor: GlobalColors.primaryColor,
@@ -42,14 +46,18 @@ class NavBarWidget extends StatelessWidget implements PreferredSizeWidget {
       onTap: (index) {
         selectedIndex = index;
         if (index == 0) {
-          Navigator.pushNamed(context, '/orders');
-        } else if (index == 1) {
-          Navigator.pushNamed(context, '/search');
-        } else if (index == 2) {
           Navigator.pushNamed(context, '/home');
-        } else if (index == 3) {
+        } else if (index == 1) {
+          Navigator.pushNamed(context, '/orders');
+        } else if (index == 2) {
           Navigator.pushNamed(context, '/carte');
+        } else if (index == 3) {
+          Navigator.pushNamed(context, '/search');
         } else if (index == 4) {
+          Navigator.pushNamed(context, '/recoltes');
+        } else if (index == 5) {
+          Navigator.pushNamed(context, '/recoltes');
+        } else if (index == 6) {
           Navigator.pushNamed(context, '/recoltes');
         }
       },
