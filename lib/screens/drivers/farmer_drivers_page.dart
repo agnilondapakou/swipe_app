@@ -29,7 +29,7 @@ class _FarmerDriversPageState extends State<FarmerDriversPage> {
         notification_counter: '0',
       ),
       bottomNavigationBar: FarmerNavBarWidget(
-        selectedIndex: 1,
+        selectedIndex: 4,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
