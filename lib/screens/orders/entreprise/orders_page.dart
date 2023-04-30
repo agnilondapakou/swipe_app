@@ -27,7 +27,7 @@ class _OrdersPageState extends State<OrdersPage> {
         notification_counter: '0',
       ),
       bottomNavigationBar: NavBarWidget(
-        selectedIndex: 0,
+        selectedIndex: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),

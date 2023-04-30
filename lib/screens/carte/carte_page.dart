@@ -23,7 +23,7 @@ class _CartePageState extends State<CartePage> {
           notification_counter: '0',
         ),
         bottomNavigationBar: NavBarWidget(
-          selectedIndex: 3,
+          selectedIndex: 2,
         ),
         body: Center(
           child: Image.asset('assets/icons/mapcard.png'),

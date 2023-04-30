@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         notification_counter: '0',
       ),
       bottomNavigationBar: NavBarWidget(
-        selectedIndex: 2,
+        selectedIndex: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
