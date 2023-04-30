@@ -7,7 +7,8 @@ import 'package:swipe_app/screens/fermes/fermes_pages.dart';
 import 'package:swipe_app/screens/home/entreprise/home_page.dart';
 import 'package:swipe_app/screens/home/farmers/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
-import 'package:swipe_app/screens/notifications/notifications_page.dart';
+import 'package:swipe_app/screens/notifications/entreprise/notifications_page.dart';
+import 'package:swipe_app/screens/notifications/farmer/farmer_notifications_page.dart';
 import 'package:swipe_app/screens/orders/entreprise/orders_page.dart';
 import 'package:swipe_app/screens/orders/farmers/farmer_orders_page.dart';
 import 'package:swipe_app/screens/recoltes/entreprise/recoltes_page.dart';
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
             usermail: "johndoe@gmail.com",
             delivery_count: 0,
             fermes_count: 0),
+        '/farmers/notifications': (context) => const FarmerNotificationPage(),
       },
     );
   }

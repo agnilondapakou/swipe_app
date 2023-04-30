@@ -22,7 +22,6 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
     required this.notification_icon,
     // ignore: non_constant_identifier_names
     required this.profile_icon,
-    // ignore: non_constant_identifier_names
     required this.automaticallyImplyLeading,
     // ignore: non_constant_identifier_names
     required this.notification_counter,
@@ -71,14 +70,13 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
               Positioned(
                 right: 0,
                 child: Container(
-                  padding: const EdgeInsets.all(1),
+                  // padding: const EdgeInsets.all(1),
                   decoration: BoxDecoration(
-                    // color #F8995E
                     color: GlobalColors.notificationColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   constraints: const BoxConstraints(
-                    minWidth: 16,
+                    minWidth: 18,
                     minHeight: 16,
                   ),
                   child: Text(

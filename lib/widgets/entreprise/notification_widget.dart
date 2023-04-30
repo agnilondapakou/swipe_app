@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:swipe_app/screens/notifications/notification_details.dart';
+import 'package:swipe_app/screens/notifications/entreprise/notification_details.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 import 'custom_rext_tween.dart';
