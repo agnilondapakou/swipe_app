@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../utils/constants.dart';
-import '../../../widgets/entreprise/top_icons_widget.dart';
-import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
-import '../../../widgets/farmers/farmer_recolte_card_widget.dart';
-import '../../../widgets/farmers/farmer_top_bar_widget.dart';
-import '../../widgets/farmers/farmer_driver_card_widget.dart';
+import '../../../../utils/constants.dart';
+import '../../../../widgets/entreprise/top_icons_widget.dart';
+import '../../../widgets/entreprise/driver_card_widget.dart';
+import '../../../widgets/entreprise/nav_bar_widget.dart';
+import '../../../widgets/entreprise/top_bar_widget.dart';
 
-class FarmerDriversPage extends StatefulWidget {
-  const FarmerDriversPage({super.key});
+class DriversPage extends StatefulWidget {
+  const DriversPage({super.key});
 
   @override
-  State<FarmerDriversPage> createState() => _FarmerDriversPageState();
+  State<DriversPage> createState() => _DriversPageState();
 }
 
-class _FarmerDriversPageState extends State<FarmerDriversPage> {
+class _DriversPageState extends State<DriversPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
-      appBar: const FarmerTopBarWidget(
+      appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Livreurs',
-        sub_title: 'Agriculteur',
+        sub_title: 'Entreprise',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
-      bottomNavigationBar: FarmerNavBarWidget(
-        selectedIndex: 4,
+      bottomNavigationBar: NavBarWidget(
+        selectedIndex: 5,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -73,7 +72,7 @@ class _FarmerDriversPageState extends State<FarmerDriversPage> {
               child: SingleChildScrollView(
                 child: Column(
                   children: const [
-                    FarmerDriverCardWidget(
+                    DriverCardWidget(
                       driver_first_name: "DHL",
                       driver_last_name: "-",
                       delivery_count: 5,
@@ -82,7 +81,7 @@ class _FarmerDriversPageState extends State<FarmerDriversPage> {
                       delete_route: '',
                       update_route: '',
                     ),
-                    FarmerDriverCardWidget(
+                    DriverCardWidget(
                       driver_first_name: "Koffi",
                       driver_last_name: "Gregoire",
                       delivery_count: 0,
