@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
 import 'package:swipe_app/widgets/entreprise/nav_bar_widget.dart';
 
-import '../../widgets/entreprise/notification_widget.dart';
-import '../../widgets/entreprise/top_bar_widget.dart';
+import '../../../widgets/entreprise/notification_widget.dart';
+import '../../../widgets/entreprise/top_bar_widget.dart';
+import '../../../widgets/entreprise/top_icons_widget.dart';
 
 class NotificationPage extends StatefulWidget {
   const NotificationPage({super.key});
@@ -28,6 +29,11 @@ class _NotificationPageState extends State<NotificationPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
+              const SizedBox(height: 10),
+              TopIconsWidget(
+                header_image: Image.asset('assets/icons/notification.png'),
+                desciption: "Consultez vos notifications",
+              ),
               const SizedBox(height: 10),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",

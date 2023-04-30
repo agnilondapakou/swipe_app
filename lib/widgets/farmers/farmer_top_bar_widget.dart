@@ -66,7 +66,7 @@ class FarmerTopBarWidget extends StatelessWidget
               IconButton(
                 icon: notification_icon,
                 onPressed: () {
-                  Navigator.pushNamed(context, '/notifications');
+                  Navigator.pushNamed(context, '/farmers/notifications');
                 },
               ),
               Positioned(
@@ -76,10 +76,10 @@ class FarmerTopBarWidget extends StatelessWidget
                   decoration: BoxDecoration(
                     // color #F8995E
                     color: GlobalColors.notificationColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   constraints: const BoxConstraints(
-                    minWidth: 16,
+                    minWidth: 18,
                     minHeight: 16,
                   ),
                   child: Text(
