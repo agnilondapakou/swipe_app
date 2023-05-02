@@ -113,6 +113,7 @@ class _SearchPageState extends State<SearchPage> {
                       period: "02-25 Mars 2023",
                       route: '/login',
                       bg_color: GlobalColors.primaryColor,
+                      button_text: "Annoncer un achat",
                     ),
                     OrderCardWidget(
                       product_name: "Haricot",
@@ -121,6 +122,7 @@ class _SearchPageState extends State<SearchPage> {
                       period: "02-25 Mars 2023",
                       route: '/login',
                       bg_color: GlobalColors.primaryColor,
+                      button_text: "Annoncer un achat",
                     ),
                   ],
                 ),
