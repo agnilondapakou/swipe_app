@@ -4,22 +4,27 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _LoginPageState createState() => _LoginPageState();
+  _RegisterPageState createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _userNameController = TextEditingController();
+  final TextEditingController _userMailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordConfirmController =
+      TextEditingController();
 
   @override
   void dispose() {
     _userNameController.dispose();
+    _userMailController.dispose();
     _passwordController.dispose();
+    _passwordConfirmController.dispose();
     super.dispose();
   }
 
@@ -32,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            margin: const EdgeInsets.only(top: 100),
+            margin: const EdgeInsets.only(top: 50),
             padding: const EdgeInsets.all(20),
             child: Form(
               key: _formKey,
@@ -47,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 18),
                   Text(
-                    "Connectez-vous à votre compte",
+                    "Créer un compte",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                       color: GlobalColors.textColor,
@@ -55,9 +60,34 @@ class _LoginPageState extends State<LoginPage> {
                       fontSize: 20,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 18),
                   TextFormField(
                     controller: _userNameController,
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      hintText: 'Nom d\'utilisateur',
+                      filled: true,
+                      fillColor: GlobalColors.tertiaryColor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Entrer votre nom d\'utilisateur';
+                      }
+                      return null;
+                    },
+                    style: GoogleFonts.poppins(
+                        color: GlobalColors.textColor,
+                        fontSize: 15 // set the text color
+                        ),
+                  ),
+                  const SizedBox(height: 18),
+                  TextFormField(
+                    controller: _userMailController,
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -105,6 +135,31 @@ class _LoginPageState extends State<LoginPage> {
                         fontSize: 15 // set the text color
                         ),
                   ),
+                  const SizedBox(height: 18),
+                  TextFormField(
+                    controller: _passwordConfirmController,
+                    textAlign: TextAlign.center,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: 'Confirmation mot de passe',
+                      filled: true,
+                      fillColor: GlobalColors.tertiaryColor,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Confirmer votre mot de passe';
+                      }
+                      return null;
+                    },
+                    style: GoogleFonts.poppins(
+                        color: GlobalColors.textColor,
+                        fontSize: 15 // set the text color
+                        ),
+                  ),
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () async {
@@ -125,7 +180,8 @@ class _LoginPageState extends State<LoginPage> {
                         // Simulate login process
                         await Future.delayed(const Duration(seconds: 2));
                         // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(context, '/home');
+                        Navigator.pushReplacementNamed(
+                            context, '/farmers/home');
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -136,14 +192,34 @@ class _LoginPageState extends State<LoginPage> {
                       minimumSize: const Size(double.infinity, 55),
                     ),
                     child: Text(
-                      'Connexion',
+                      'Enregistrer',
                       style: GoogleFonts.poppins(
-                        fontSize: 20,
+                        color: GlobalColors.whiteColor,
                         fontWeight: FontWeight.bold,
+                        fontSize: 20,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 18),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.info_outline_rounded,
+                        color: Colors.red,
+                        size: 15,
+                      ),
+                      Text(
+                        " Cette parte est reservée aux agriculteurs",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.poppins(
+                          color: Colors.red,
+                          fontSize: 11,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
                   TextButton(
                     onPressed: () {},
                     child: Column(
@@ -152,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              'Vous n\'avez pas de compte ? ',
+                              'Vous avez déjà un compte ? ',
                               style: GoogleFonts.poppins(
                                 color: GlobalColors.primaryColor,
                                 fontSize: 12,
@@ -161,10 +237,10 @@ class _LoginPageState extends State<LoginPage> {
                             GestureDetector(
                               onTap: () {
                                 Navigator.pushReplacementNamed(
-                                    context, '/register');
+                                    context, '/login');
                               },
                               child: Text(
-                                'Créez-en un !',
+                                'Se connecter !',
                                 style: GoogleFonts.poppins(
                                   color: GlobalColors.notificationColor,
                                   fontWeight: FontWeight.bold,

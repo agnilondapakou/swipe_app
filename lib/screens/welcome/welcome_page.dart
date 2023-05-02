@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -24,30 +25,26 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: GlobalColors.secondaryColor,
+        backgroundColor: GlobalColors.whiteColor,
         body: SizedBox(
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Image(
-                  image: AssetImage("assets/images/farmHall.png"), width: 500),
-              SizedBox(
-                height: 50,
+            children: [
+              const Image(image: AssetImage("assets/icons/logo.png"), width: 150),
+              const SizedBox(
+                height: 20,
               ),
-              SpinKitChasingDots(
+              const SpinKitChasingDots(
                 color: Colors.green,
                 size: 80.0,
               ),
-              SizedBox(height: 60),
-              // powered by GEEKS CODE
+              const SizedBox(height: 60),
               Text(
                 'Powered by GEEKS CODE',
-                style: TextStyle(
-                  fontFamily: "Poppins",
+                style: GoogleFonts.poppins(
                   fontSize: 12,
-                  // color code #4D6346
-                  color: Color.fromARGB(101, 77, 99, 70),
+                  color: const Color.fromARGB(101, 77, 99, 70),
                 ),
               ),
             ],

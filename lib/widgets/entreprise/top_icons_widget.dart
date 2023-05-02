@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../utils/constants.dart';
+import '../../utils/constants.dart';
 
 class TopIconsWidget extends StatelessWidget implements PreferredSizeWidget {
   // ignore: non_constant_identifier_names
@@ -8,7 +9,9 @@ class TopIconsWidget extends StatelessWidget implements PreferredSizeWidget {
   final String desciption;
   const TopIconsWidget(
       // ignore: non_constant_identifier_names
-      {required this.header_image, required this.desciption, super.key});
+      {required this.header_image,
+      required this.desciption,
+      super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -29,10 +32,10 @@ class TopIconsWidget extends StatelessWidget implements PreferredSizeWidget {
         const SizedBox(height: 10),
         Text(
           desciption,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: GlobalColors.primaryColor,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.poppins(
+            fontSize: 12,
+            color: GlobalColors.textColor,
           ),
         ),
       ],

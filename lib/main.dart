@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/screens/carte/carte_page.dart';
-import 'package:swipe_app/screens/entreprise/profile_page.dart';
-import 'package:swipe_app/screens/home/home_page.dart';
+import 'package:swipe_app/screens/drivers/entreprise/drivers_page.dart';
+import 'package:swipe_app/screens/drivers/farmer/farmer_drivers_page.dart';
+import 'package:swipe_app/screens/farmers/farmers_page.dart';
+import 'package:swipe_app/screens/profile/farmer_profile_page.dart';
+import 'package:swipe_app/screens/profile/profile_page.dart';
+import 'package:swipe_app/screens/fermes/fermes_pages.dart';
+import 'package:swipe_app/screens/home/entreprise/home_page.dart';
+import 'package:swipe_app/screens/home/farmers/home_page.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
-import 'package:swipe_app/screens/orders/orders_page.dart';
-import 'package:swipe_app/screens/recoltes/recoltes_page.dart';
+import 'package:swipe_app/screens/notifications/entreprise/notifications_page.dart';
+import 'package:swipe_app/screens/notifications/farmer/farmer_notifications_page.dart';
+import 'package:swipe_app/screens/orders/entreprise/orders_page.dart';
+import 'package:swipe_app/screens/orders/farmers/farmer_orders_page.dart';
+import 'package:swipe_app/screens/recoltes/entreprise/recoltes_page.dart';
+import 'package:swipe_app/screens/recoltes/farmers/farmer_recoltes_page.dart';
+import 'package:swipe_app/screens/register/register.dart';
 import 'package:swipe_app/screens/search/search_page.dart';
 import 'package:swipe_app/screens/welcome/welcome_page.dart';
 
@@ -23,6 +34,7 @@ class MyApp extends StatelessWidget {
       home: const WelcomePage(),
       initialRoute: '/',
       routes: {
+        // Entreprise's routes
         '/welcome': (context) => const WelcomePage(),
         '/login': (context) => const LoginPage(),
         '/profile': (context) =>
@@ -32,6 +44,23 @@ class MyApp extends StatelessWidget {
         '/recoltes': (context) => const RecoltesPage(),
         '/carte': (context) => const CartePage(),
         '/search': (context) => const SearchPage(),
+        '/notifications': (context) => const NotificationPage(),
+        '/drivers': (context) => const DriversPage(),
+        '/farmers': (context) => const FarmersPage(),
+
+        // Famer's routes
+        '/register': (context) => const RegisterPage(),
+        '/farmers/home': (context) => const FarmersHomePage(),
+        '/farmers/orders': (context) => const FermerOrdersPage(),
+        '/farmers/recoltes': (context) => const FarmerRecoltesPage(),
+        '/farmers/fermes': (context) => const FermePage(),
+        '/farmers/drivers': (context) => const FarmerDriversPage(),
+        '/farmers/profile': (context) => FarmerProfilePage(
+            username: "John",
+            usermail: "johndoe@gmail.com",
+            delivery_count: 0,
+            fermes_count: 0),
+        '/farmers/notifications': (context) => const FarmerNotificationPage(),
       },
     );
   }

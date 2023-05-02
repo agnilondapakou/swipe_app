@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
+  // ignore: non_constant_identifier_names
+  final String sub_title;
   final bool automaticallyImplyLeading;
   // ignore: non_constant_identifier_names
   final Icon notification_icon;
@@ -10,15 +13,19 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final Icon profile_icon;
   // ignore: non_constant_identifier_names
   final String notification_counter;
-  const TopBarWidget(
-      {super.key,
-      required this.title,
-      // ignore: non_constant_identifier_names
-      required this.notification_icon,
-      // ignore: non_constant_identifier_names
-      required this.profile_icon,
-      // ignore: non_constant_identifier_names
-      required this.automaticallyImplyLeading, required this.notification_counter,});
+  const TopBarWidget({
+    super.key,
+    required this.title,
+    // ignore: non_constant_identifier_names
+    required this.sub_title,
+    // ignore: non_constant_identifier_names
+    required this.notification_icon,
+    // ignore: non_constant_identifier_names
+    required this.profile_icon,
+    required this.automaticallyImplyLeading,
+    // ignore: non_constant_identifier_names
+    required this.notification_counter,
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -26,10 +33,28 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(title,
+              style: GoogleFonts.poppins(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: GlobalColors.whiteColor,
+              )),
+          Text(
+            sub_title,
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              color: GlobalColors.whiteColor,
+            ),
+          ),
+        ],
+      ),
       centerTitle: true,
       backgroundColor: GlobalColors.primaryColor,
-      automaticallyImplyLeading: automaticallyImplyLeading, // ajout de cette ligne
+      automaticallyImplyLeading:
+          automaticallyImplyLeading, // ajout de cette ligne
       actions: [
         //notification button with counter on stack
         Padding(
@@ -38,24 +63,25 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
             children: [
               IconButton(
                 icon: notification_icon,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/notifications');
+                },
               ),
               Positioned(
                 right: 0,
                 child: Container(
-                  padding: const EdgeInsets.all(1),
+                  // padding: const EdgeInsets.all(1),
                   decoration: BoxDecoration(
-                    // color #F8995E
                     color: GlobalColors.notificationColor,
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
                   constraints: const BoxConstraints(
-                    minWidth: 16,
+                    minWidth: 18,
                     minHeight: 16,
                   ),
                   child: Text(
                     notification_counter,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       color: GlobalColors.whiteColor,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,

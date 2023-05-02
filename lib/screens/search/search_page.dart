@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants.dart';
-import '../../widgets/nav_bar_widget.dart';
-import '../../widgets/order_card_widget.dart';
-import '../../widgets/top_bar_widget.dart';
-import '../../widgets/top_icons_widget.dart';
+import '../../widgets/entreprise/nav_bar_widget.dart';
+import '../../widgets/entreprise/order_card_widget.dart';
+import '../../widgets/entreprise/top_bar_widget.dart';
+import '../../widgets/entreprise/top_icons_widget.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -17,16 +18,17 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
+      backgroundColor: GlobalColors.whiteColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Recherches',
+        sub_title: 'Entreprise',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
       bottomNavigationBar: NavBarWidget(
-        selectedIndex: 1,
+        selectedIndex: 3,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -37,7 +39,8 @@ class _SearchPageState extends State<SearchPage> {
               children: [
                 TopIconsWidget(
                     header_image: Image.asset('assets/icons/search.png'),
-                    desciption: "Recherches"),
+                    desciption:
+                        "Cherchez les fermes qui ont les quantites de\nproduits dont vous avez besoins."),
               ],
             ),
             const SizedBox(height: 20),
@@ -68,10 +71,11 @@ class _SearchPageState extends State<SearchPage> {
                           child: TextField(
                             decoration: InputDecoration(
                               hintText: "Rechercher...",
-                              hintStyle: TextStyle(color: GlobalColors.primaryColor),
+                              hintStyle: GoogleFonts.poppins(
+                                  color: GlobalColors.primaryColor),
                               border: InputBorder.none,
                             ),
-                            style: TextStyle(
+                            style: GoogleFonts.poppins(
                               color: GlobalColors.primaryColor,
                             ),
                           ),
@@ -80,25 +84,6 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      "Cherchez les fermes qui ont les quantites de\nproduits dont vous avez besoins.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold,
-                        color: GlobalColors.primaryColor,
-                      ),
-                    ),
-                  ],
-                )
               ],
             ),
             const SizedBox(height: 20),

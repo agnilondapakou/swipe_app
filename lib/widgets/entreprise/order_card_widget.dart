@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 
 class OrderCardWidget extends StatelessWidget {
@@ -9,6 +10,7 @@ class OrderCardWidget extends StatelessWidget {
   final int quantity;
   final String period;
   final String route;
+  // ignore: non_constant_identifier_names
   final String button_text;
   // ignore: non_constant_identifier_names
   final Color bg_color;
@@ -21,6 +23,7 @@ class OrderCardWidget extends StatelessWidget {
       required this.quantity,
       required this.period,
       required this.route,
+      // ignore: non_constant_identifier_names
       required this.button_text,
       // ignore: non_constant_identifier_names
       required this.bg_color,
@@ -46,7 +49,7 @@ class OrderCardWidget extends StatelessWidget {
             children: [
               const Image(
                 image: AssetImage(
-                  'assets/icons/tree.png',
+                  'assets/icons/package.png',
                 ),
                 width: 100,
                 height: 100,
@@ -57,28 +60,28 @@ class OrderCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Produit :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     'Ferme :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     'Quantité :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     'Période :',
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
@@ -91,28 +94,28 @@ class OrderCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     product_name,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     farm_name,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     quantity.toString(),
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
                     period,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
@@ -134,10 +137,10 @@ class OrderCardWidget extends StatelessWidget {
               },
               child: Text(
                 button_text,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: GlobalColors.whiteColor,
-                    fontFamily: "Poppins"),
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  color: GlobalColors.whiteColor,
+                ),
               ),
             ),
           ),

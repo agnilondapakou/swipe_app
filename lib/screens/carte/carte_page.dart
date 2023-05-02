@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:swipe_app/widgets/nav_bar_widget.dart';
-import 'package:swipe_app/widgets/top_bar_widget.dart';
+import 'package:swipe_app/widgets/entreprise/nav_bar_widget.dart';
+
+import '../../widgets/entreprise/top_bar_widget.dart';
 
 class CartePage extends StatefulWidget {
   const CartePage({super.key});
@@ -18,12 +17,13 @@ class _CartePageState extends State<CartePage> {
         appBar: const TopBarWidget(
           automaticallyImplyLeading: true,
           title: 'Carte',
+          sub_title: 'Entreprise',
           notification_icon: Icon(Icons.notifications_outlined),
           profile_icon: Icon(Icons.person_outline_rounded),
           notification_counter: '0',
         ),
         bottomNavigationBar: NavBarWidget(
-          selectedIndex: 3,
+          selectedIndex: 2,
         ),
         body: Center(
           child: Image.asset('assets/icons/mapcard.png'),

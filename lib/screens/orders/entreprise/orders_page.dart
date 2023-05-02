@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:swipe_app/utils/constants.dart';
-import 'package:swipe_app/widgets/order_card_widget.dart';
-import 'package:swipe_app/widgets/top_icons_widget.dart';
 
-import '../../widgets/nav_bar_widget.dart';
-import '../../widgets/top_bar_widget.dart';
+import '../../../widgets/entreprise/nav_bar_widget.dart';
+import '../../../widgets/entreprise/order_card_widget.dart';
+import '../../../widgets/entreprise/top_bar_widget.dart';
+import '../../../widgets/entreprise/top_icons_widget.dart';
 
 class OrdersPage extends StatefulWidget {
   const OrdersPage({super.key});
@@ -17,16 +17,17 @@ class _OrdersPageState extends State<OrdersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: GlobalColors.secondaryColor,
+      backgroundColor: GlobalColors.whiteColor,
       appBar: const TopBarWidget(
         automaticallyImplyLeading: true,
         title: 'Commandes',
+        sub_title: 'Entreprise',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
         notification_counter: '0',
       ),
       bottomNavigationBar: NavBarWidget(
-        selectedIndex: 0,
+        selectedIndex: 1,
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -37,9 +38,8 @@ class _OrdersPageState extends State<OrdersPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TopIconsWidget(
-                  header_image: Image.asset('assets/icons/orders.png'),
-                  desciption: "Commandes"
-                ),
+                    header_image: Image.asset('assets/icons/orders.png'),
+                    desciption: "Commandes"),
               ],
             ),
             const SizedBox(height: 20),
