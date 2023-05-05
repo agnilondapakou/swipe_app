@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe_app/models/api_response.dart';
+import 'package:swipe_app/services/auth/auth_service.dart';
 
 import '../../utils/constants.dart';
 
@@ -19,16 +22,17 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordConfirmController =
       TextEditingController();
 
-  @override
-  void dispose() {
-    _userNameController.dispose();
-    _userMailController.dispose();
-    _passwordController.dispose();
-    _passwordConfirmController.dispose();
-    super.dispose();
+  final _formKey = GlobalKey<FormState>();
+
+// function to check if value is a valid email
+  bool isEmail(String value) {
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value);
   }
 
-  final _formKey = GlobalKey<FormState>();
+// function to check if value is a valid phone number
+  bool isPhone(String value) {
+    return RegExp(r'^\+?[1-9]\d{1,14}$').hasMatch(value);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,25 +167,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
+                      if (_formKey.currentState!.validate() &&
+                          _passwordController.text.trim() ==
+                              _passwordConfirmController.text.trim()) {
+                        registerUser();
                         // Show loading indicator
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (BuildContext context) {
-                            return const Center(
-                                child: SpinKitChasingDots(
-                              color: Colors.green,
-                              size: 60.0,
-                            ));
-                          },
-                        );
-
                         // Simulate login process
-                        await Future.delayed(const Duration(seconds: 2));
+                        //await Future.delayed(const Duration(seconds: 2));
                         // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(
-                            context, '/farmers/home');
+                        //Navigator.pushReplacementNamed(context, '/farmers/home');
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -269,5 +263,26 @@ class _RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
+  }
+
+  void registerUser() async {
+    String userEmail = '';
+    String userPhone = '';
+    // get the input value
+    String userInput = _userMailController.text.trim();
+// check if the input value is an email or a phone number
+    if (isEmail(userInput)) {
+      userEmail = userInput;
+      userPhone = '*';
+    } else if (isPhone(userInput)) {
+      userEmail = '*';
+      userPhone = userInput;
+    } else {
+      // handle invalid input value
+    }
+    // Call the register function
+
+    ApiResponse response = await register(_userNameController.text.trim(),
+        userEmail, userPhone, 'farmer', _passwordController.text.trim(), '0');
   }
 }
