@@ -13,3 +13,6 @@ class GlobalColors {
   static HexColor iconsBackColor = HexColor('#C8E6C9');
   static HexColor whiteColor = HexColor('#FFFFFF');
 }
+
+// Api Url
+String apiUrl = 'http://192.168.1.67:8000/api';

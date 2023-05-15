@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../models/api_response.dart';
+import '../../services/auth/auth_service.dart';
 import '../../utils/constants.dart';
+import '../home/farmers/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -16,13 +19,18 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  @override
-  void dispose() {
-    _userNameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
+  void loginUser() async{
+    ApiResponse response = await login(_userNameController.text.trim(), _passwordController.text.trim());
+    if(response.data != null){
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const FarmersHomePage()), (route) => false);
+    }
+    else {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Connexion échouée"),)
+      );
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const LoginPage()), (route) => false);
+    }
   }
-
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -121,11 +129,8 @@ class _LoginPageState extends State<LoginPage> {
                             ));
                           },
                         );
+                        loginUser();
 
-                        // Simulate login process
-                        await Future.delayed(const Duration(seconds: 2));
-                        // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(context, '/home');
                       }
                     },
                     style: ElevatedButton.styleFrom(
