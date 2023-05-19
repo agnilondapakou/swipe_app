@@ -8,7 +8,8 @@ import '../../models/user_model.dart';
 import '../../utils/constants.dart';
 
   const storage = FlutterSecureStorage();
-String token = '';
+var token = '';
+int userId = 0;
   Future<ApiResponse> login(String identifier, String password) async {
     ApiResponse apiResponse = ApiResponse();
     try {
@@ -28,6 +29,7 @@ String token = '';
           final data = jsonDecode(response.body);
           apiResponse.data = data;
           token = data['session']['token'];
+          userId = data['session']['user_id'];
         } else {
           final errors = jsonDecode(response.body);
           apiResponse.error = errors;
@@ -130,11 +132,26 @@ String token = '';
 
   Future<ApiResponse> getUser() async {
     ApiResponse apiResponse = ApiResponse();
-    // Récupération des informations utilisateur depuis le secure storage
-    final userJson = await storage.read(key: 'user');
-    if (userJson != null) {
-      print("saiiii");
-      apiResponse.data = UserModel.fromJson(jsonDecode(userJson)) as ApiResponse;
+    try {
+      String url = '$apiUrl/users/$userId';
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      if (response != null) {
+        if (response.statusCode == 200) {
+          apiResponse.data = jsonDecode(response.body);
+        } else {
+          throw Exception('Failed to get user');
+        }
+      } else {
+        print("Failed to get a response from the server");
+      }
+    } catch (e) {
+      apiResponse.error = "Server error";
     }
     return apiResponse;
   }
