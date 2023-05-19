@@ -55,11 +55,7 @@ class MyApp extends StatelessWidget {
         '/farmers/recoltes': (context) => const FarmerRecoltesPage(),
         '/farmers/fermes': (context) => const FermePage(),
         '/farmers/drivers': (context) => const FarmerDriversPage(),
-        '/farmers/profile': (context) => FarmerProfilePage(
-            username: "John",
-            usermail: "johndoe@gmail.com",
-            delivery_count: 0,
-            fermes_count: 0),
+        '/farmers/profile': (context) => const FarmerProfilePage(),
         '/farmers/notifications': (context) => const FarmerNotificationPage(),
       },
     );
