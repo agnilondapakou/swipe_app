@@ -1,21 +1,65 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe_app/services/auth/auth_service.dart';
 import 'package:swipe_app/utils/constants.dart';
 
+import '../../models/api_response.dart';
 import '../../widgets/entreprise/profile_image_widget.dart';
 import '../../widgets/farmers/farmer_nav_bar_widget.dart';
 import '../../widgets/farmers/farmer_top_bar_widget.dart';
+import '../login/login_page.dart';
 
-// ignore: must_be_immutable
-class FarmerProfilePage extends StatelessWidget {
-  String username;
-  String usermail;
-  int fermes_count;
-  int delivery_count;
-  FarmerProfilePage(
-      {required this.username, required this.usermail, required this.delivery_count, required this.fermes_count, super.key});
+class FarmerProfilePage extends StatefulWidget {
+  const FarmerProfilePage({super.key});
+  @override
+  _FarmerProfilePageState createState() => _FarmerProfilePageState();
+}
+
+class _FarmerProfilePageState extends State<FarmerProfilePage> {
+  var info;
+  String username = '';
+  String email = '';
+  void logoutUser(BuildContext context) async {
+    ApiResponse response = await logout();
+    if (response.data != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+        (route) => false,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Vous êtes déconnecté"),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Déconnexion échouée"),
+        ),
+      );
+    }
+  }
+
+  void getUserInfo() async {
+    ApiResponse response = await getUser();
+    if (response.data != null) {
+      setState(() {
+        info = response.data;
+        username = info['username'];
+        if (info['email'] == '*') {
+          email = info['phone_number'];
+        } else {
+          email = info['email'];
+        }
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +95,14 @@ class FarmerProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               Text(
-                usermail,
+                email,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   color: GlobalColors.textColor,
                 ),
               ),
               const SizedBox(height: 15),
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -91,11 +135,11 @@ class FarmerProfilePage extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
+              ),*/
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login');
+                  logoutUser(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: GlobalColors.logoutColor,

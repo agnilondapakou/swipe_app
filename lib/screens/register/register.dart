@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/models/api_response.dart';
+import 'package:swipe_app/screens/login/login_page.dart';
 import 'package:swipe_app/services/auth/auth_service.dart';
 
 import '../../utils/constants.dart';
@@ -171,11 +170,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           _passwordController.text.trim() ==
                               _passwordConfirmController.text.trim()) {
                         registerUser();
-                        // Show loading indicator
-                        // Simulate login process
-                        //await Future.delayed(const Duration(seconds: 2));
-                        // ignore: use_build_context_synchronously
-                        //Navigator.pushReplacementNamed(context, '/farmers/home');
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -284,5 +278,20 @@ class _RegisterPageState extends State<RegisterPage> {
 
     ApiResponse response = await register(_userNameController.text.trim(),
         userEmail, userPhone, 'farmer', _passwordController.text.trim(), '0');
+    if (response.data != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+          (route) => false);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Compte créé!Veuillez vous connecter"),
+      ));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Création échouée"),
+      ));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+          (route) => false);
+    }
   }
 }

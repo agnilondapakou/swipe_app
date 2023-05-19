@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:swipe_app/models/api_response.dart';
 
@@ -9,7 +8,8 @@ import '../../models/user_model.dart';
 import '../../utils/constants.dart';
 
   const storage = FlutterSecureStorage();
-
+var token = '';
+int userId = 0;
   Future<ApiResponse> login(String identifier, String password) async {
     ApiResponse apiResponse = ApiResponse();
     try {
@@ -28,11 +28,8 @@ import '../../utils/constants.dart';
         if (response.statusCode == 201) {
           final data = jsonDecode(response.body);
           apiResponse.data = data;
-          final token = data['access_token'];
-          final user = UserModel.fromJson(data['user']);
-          // Stockage du token et des informations utilisateur dans le secure storage
-          await storage.write(key: 'token', value: token);
-          await storage.write(key: 'user', value: jsonEncode(user.toJson()));
+          token = data['session']['token'];
+          userId = data['session']['user_id'];
         } else {
           final errors = jsonDecode(response.body);
           apiResponse.error = errors;
@@ -76,7 +73,7 @@ import '../../utils/constants.dart';
       );
       if (response != null) {
         if (response.statusCode == 201) {
-          apiResponse.data = UserModel.fromJson(jsonDecode(response.body));
+          apiResponse.data = jsonDecode(response.body);
         } else {
           throw Exception('Failed to register');
         }
@@ -95,11 +92,36 @@ import '../../utils/constants.dart';
         'Accept': 'application/json',
       };
 
-  Future<bool> logout() async {
-    // Suppression du token et des informations utilisateur depuis le secure storage
-    await storage.delete(key: 'token');
-    await storage.delete(key: 'user');
-    return true;
+  Future<ApiResponse> logout()  async {
+    ApiResponse apiResponse = ApiResponse();
+    try {
+      String url = '$apiUrl/users';
+      final response = await http.delete(
+        Uri.parse(url),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(
+            {
+              'token': token,
+            }
+        ),
+      );
+      if (response != null) {
+        if (response.statusCode == 200) {
+          apiResponse.data = jsonDecode(response.body);
+        } else {
+          throw Exception('Failed to logout');
+        }
+      } else {
+        print("Failed to get a response from the server");
+      }
+    } catch (e) {
+      apiResponse.error = "Server error";
+    }
+
+    return apiResponse;
   }
 
   Future<String?> isLoggedIn() async {
@@ -110,10 +132,26 @@ import '../../utils/constants.dart';
 
   Future<ApiResponse> getUser() async {
     ApiResponse apiResponse = ApiResponse();
-    // Récupération des informations utilisateur depuis le secure storage
-    final userJson = await storage.read(key: 'user');
-    if (userJson != null) {
-      apiResponse = UserModel.fromJson(jsonDecode(userJson)) as ApiResponse;
+    try {
+      String url = '$apiUrl/users/$userId';
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {
+          'Content-type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      if (response != null) {
+        if (response.statusCode == 200) {
+          apiResponse.data = jsonDecode(response.body);
+        } else {
+          throw Exception('Failed to get user');
+        }
+      } else {
+        print("Failed to get a response from the server");
+      }
+    } catch (e) {
+      apiResponse.error = "Server error";
     }
     return apiResponse;
   }
