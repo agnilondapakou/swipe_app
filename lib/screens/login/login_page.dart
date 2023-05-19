@@ -19,18 +19,23 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  void loginUser() async{
-    ApiResponse response = await login(_userNameController.text.trim(), _passwordController.text.trim());
-    if(response.data != null){
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const FarmersHomePage()), (route) => false);
-    }
-    else {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Connexion échouée"),)
-      );
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const LoginPage()), (route) => false);
+  void loginUser() async {
+    ApiResponse response = await login(
+        _userNameController.text.trim(), _passwordController.text.trim());
+    if (response.data != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const FarmersHomePage()),
+          (route) => false);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text("Connexion échouée"),
+      ));
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+          (route) => false);
     }
   }
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -130,7 +135,6 @@ class _LoginPageState extends State<LoginPage> {
                           },
                         );
                         loginUser();
-
                       }
                     },
                     style: ElevatedButton.styleFrom(

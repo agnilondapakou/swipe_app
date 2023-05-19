@@ -1,12 +1,14 @@
 // ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe_app/services/auth/auth_service.dart';
 import 'package:swipe_app/utils/constants.dart';
 
+import '../../models/api_response.dart';
 import '../../widgets/entreprise/profile_image_widget.dart';
 import '../../widgets/farmers/farmer_nav_bar_widget.dart';
 import '../../widgets/farmers/farmer_top_bar_widget.dart';
+import '../login/login_page.dart';
 
 // ignore: must_be_immutable
 class FarmerProfilePage extends StatelessWidget {
@@ -95,7 +97,7 @@ class FarmerProfilePage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/login');
+                  logoutUser(context);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: GlobalColors.logoutColor,
@@ -126,4 +128,25 @@ class FarmerProfilePage extends StatelessWidget {
       ),
     );
   }
+  void logoutUser(BuildContext context) async {
+    ApiResponse response = await logout();
+    if (response.data != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+            (route) => false,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Vous êtes déconnectez"),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Déconnexion échouée"),
+        ),
+      );
+    }
+  }
+
 }
