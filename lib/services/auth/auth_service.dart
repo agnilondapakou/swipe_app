@@ -18,7 +18,7 @@ int userId = 0;
         Uri.parse(url),
         body: jsonEncode(
             {
-              'identifier': identifier,
+              'userinfo': identifier,
               'password': password,
             }
         ),
@@ -45,8 +45,7 @@ int userId = 0;
 
   Future<ApiResponse> register(
     String username,
-    String email,
-    String phone_number,
+    String user_info,
     String type,
     String password,
     String source,
@@ -63,14 +62,14 @@ int userId = 0;
         body: jsonEncode(
             {
               'username': username,
-              'email': email,
-              'phone_number': phone_number,
+              'userinfo': user_info,
               'type': type,
               'password': password,
               'source': source,
             }
         ),
       );
+      print(response.body);
       if (response != null) {
         if (response.statusCode == 201) {
           apiResponse.data = jsonDecode(response.body);
