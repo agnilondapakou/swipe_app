@@ -20,7 +20,7 @@ class _FarmerDriversPageState extends State<FarmerDriversPage> {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
       appBar: const FarmerTopBarWidget(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: 'Livreurs',
         sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),

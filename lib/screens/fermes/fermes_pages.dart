@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe_app/services/farm/farm_service.dart';
 
 import '../../../utils/constants.dart';
 import '../../../widgets/entreprise/top_icons_widget.dart';
 import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
 import '../../../widgets/farmers/farmer_top_bar_widget.dart';
+import '../../models/api_response.dart';
 import '../../widgets/farmers/farme_card_widget.dart';
 
 class FermePage extends StatefulWidget {
@@ -15,12 +18,37 @@ class FermePage extends StatefulWidget {
 }
 
 class _FermePageState extends State<FermePage> {
+  List<dynamic> farmList = [];
+  bool isLoading = true;
+  void getFarmInfo() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    ApiResponse response = await getFarms();
+    if (response.data != null) {
+      setState(() {
+        final info = response.data;
+        if (info != null) {
+          farmList = List<dynamic>.from(info as List<dynamic>);
+        }
+        isLoading = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getFarmInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
       appBar: const FarmerTopBarWidget(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: 'Fermes',
         sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),
@@ -68,25 +96,25 @@ class _FermePageState extends State<FermePage> {
             ),
             const SizedBox(height: 10),
             Flexible(
-              child: Column(
-                children: const [
-                  FermeCardWidget(
-                    ferme_name: "Djidjole",
-                    city: "Kara",
-                    phone_number: "90 90 90 90",
-                    update_route: '',
-                    delete_route: '',
-                  ),
-                  FermeCardWidget(
-                    ferme_name: "Djidjole",
-                    city: "Kara",
-                    phone_number: "90 90 90 90",
-                    update_route: '',
-                    delete_route: '',
-                  ),
-                ],
-              ),
-            )
+              child: isLoading
+                  ? const Center(
+                      child: SpinKitChasingDots(
+                        color: Colors.green,
+                        size: 30.0,
+                      ),
+                    )
+                  : Column(
+                      children: [
+                        for (var item in farmList)
+                          FermeCardWidget(
+                            ferme_name: item['farm_name'],
+                            city: item['city'],
+                            update_route: '',
+                            delete_route: '',
+                          ),
+                      ],
+                    ),
+            ),
           ],
         ),
       ),

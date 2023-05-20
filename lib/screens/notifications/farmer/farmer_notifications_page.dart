@@ -20,7 +20,7 @@ class _FarmerNotificationPageState extends State<FarmerNotificationPage> {
         appBar: const FarmerTopBarWidget(
           title: "Notifications",
           sub_title: 'Agriculteur',
-          automaticallyImplyLeading: true,
+          automaticallyImplyLeading: false,
           notification_icon: Icon(Icons.notifications),
           profile_icon: Icon(Icons.person_outline_rounded),
           notification_counter: "0",

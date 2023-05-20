@@ -7,7 +7,7 @@ class FermeCardWidget extends StatelessWidget {
   final String ferme_name;
   final String city;
   // ignore: non_constant_identifier_names
-  final String phone_number;
+  //final String phone_number;
   // ignore: non_constant_identifier_names
   final String delete_route;
   // ignore: non_constant_identifier_names
@@ -19,7 +19,7 @@ class FermeCardWidget extends StatelessWidget {
       required this.ferme_name,
       required this.city,
       // ignore: non_constant_identifier_names
-      required this.phone_number,
+      //required this.phone_number,
       // ignore: non_constant_identifier_names
       required this.delete_route,
       // ignore: non_constant_identifier_names
@@ -74,13 +74,13 @@ class FermeCardWidget extends StatelessWidget {
                         color: GlobalColors.textColor,
                       ),
                     ),
-                    Text(
+                    /*Text(
                       'Téléphone :',
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         color: GlobalColors.textColor,
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
                 const SizedBox(width: 5),
@@ -101,13 +101,13 @@ class FermeCardWidget extends StatelessWidget {
                         color: GlobalColors.textColor,
                       ),
                     ),
-                    Text(
+                    /*Text(
                       phone_number,
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         color: GlobalColors.textColor,
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ],

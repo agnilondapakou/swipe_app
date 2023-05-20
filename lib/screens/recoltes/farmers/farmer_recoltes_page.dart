@@ -20,7 +20,7 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
     return Scaffold(
       backgroundColor: GlobalColors.whiteColor,
       appBar: const FarmerTopBarWidget(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: 'Recoltes',
         sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),
