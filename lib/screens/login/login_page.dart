@@ -11,13 +11,13 @@ class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _userNameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   void loginUser() async {
     ApiResponse response = await login(
@@ -36,8 +36,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,10 +51,9 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 120,
-                    child: Image(
-                        image: AssetImage("assets/icons/logo.png"), width: 200),
+                    child: Image.asset("assets/icons/logo.png", width: 200),
                   ),
                   const SizedBox(height: 18),
                   Text(
@@ -89,9 +86,9 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                     style: GoogleFonts.poppins(
-                        color: GlobalColors.textColor,
-                        fontSize: 15 // set the text color
-                        ),
+                      color: GlobalColors.textColor,
+                      fontSize: 15,
+                    ),
                   ),
                   const SizedBox(height: 18),
                   TextFormField(
@@ -114,9 +111,9 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                     style: GoogleFonts.poppins(
-                        color: GlobalColors.textColor,
-                        fontSize: 15 // set the text color
-                        ),
+                      color: GlobalColors.textColor,
+                      fontSize: 15,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
@@ -128,10 +125,11 @@ class _LoginPageState extends State<LoginPage> {
                           barrierDismissible: false,
                           builder: (BuildContext context) {
                             return const Center(
-                                child: SpinKitChasingDots(
-                              color: Colors.green,
-                              size: 60.0,
-                            ));
+                              child: SpinKitChasingDots(
+                                color: Colors.green,
+                                size: 60.0,
+                              ),
+                            );
                           },
                         );
                         loginUser();
@@ -154,7 +152,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 25),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/register');
+                    },
                     child: Column(
                       children: [
                         Row(
@@ -167,24 +167,17 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 12,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/register');
-                              },
-                              child: Text(
-                                'Créez-en un !',
-                                style: GoogleFonts.poppins(
-                                  color: GlobalColors.notificationColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
+                            Text(
+                              'Créez-en un !',
+                              style: GoogleFonts.poppins(
+                                color: GlobalColors.notificationColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
                               ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 60),
-                        // powered by GEEKS CODE
                         Text(
                           'Powered by GEEKS CODE',
                           style: GoogleFonts.poppins(

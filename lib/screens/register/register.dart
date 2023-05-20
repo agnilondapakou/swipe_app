@@ -3,35 +3,22 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/models/api_response.dart';
 import 'package:swipe_app/screens/login/login_page.dart';
 import 'package:swipe_app/services/auth/auth_service.dart';
-
 import '../../utils/constants.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _RegisterPageState createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _userNameController = TextEditingController();
-  final TextEditingController _userMailController = TextEditingController();
+  final TextEditingController _userInfoController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordConfirmController =
       TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
-// function to check if value is a valid email
-  bool isEmail(String value) {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value);
-  }
-
-// function to check if value is a valid phone number
-  bool isPhone(String value) {
-    return RegExp(r'^\+?[1-9]\d{1,14}$').hasMatch(value);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +35,9 @@ class _RegisterPageState extends State<RegisterPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 120,
-                    child: Image(
-                        image: AssetImage("assets/icons/logo.png"), width: 200),
+                    child: Image.asset("assets/icons/logo.png", width: 200),
                   ),
                   const SizedBox(height: 18),
                   Text(
@@ -64,108 +50,54 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(height: 18),
-                  TextFormField(
+                  buildTextFormField(
                     controller: _userNameController,
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: 'Nom d\'utilisateur',
-                      filled: true,
-                      fillColor: GlobalColors.tertiaryColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
+                    hintText: 'Nom d\'utilisateur',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Entrer votre nom d\'utilisateur';
                       }
                       return null;
                     },
-                    style: GoogleFonts.poppins(
-                        color: GlobalColors.textColor,
-                        fontSize: 15 // set the text color
-                        ),
                   ),
                   const SizedBox(height: 18),
-                  TextFormField(
-                    controller: _userMailController,
-                    textAlign: TextAlign.center,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: 'Email ou téléphone',
-                      filled: true,
-                      fillColor: GlobalColors.tertiaryColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
+                  buildTextFormField(
+                    controller: _userInfoController,
+                    hintText: 'Email ou téléphone',
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Entrer votre email ou téléphone';
                       }
                       return null;
                     },
-                    style: GoogleFonts.poppins(
-                        color: GlobalColors.textColor,
-                        fontSize: 15 // set the text color
-                        ),
                   ),
                   const SizedBox(height: 18),
-                  TextFormField(
+                  buildTextFormField(
                     controller: _passwordController,
-                    textAlign: TextAlign.center,
+                    hintText: 'Mot de passe',
                     obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Mot de passe',
-                      filled: true,
-                      fillColor: GlobalColors.tertiaryColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Entrer votre mot de passe';
                       }
                       return null;
                     },
-                    style: GoogleFonts.poppins(
-                        color: GlobalColors.textColor,
-                        fontSize: 15 // set the text color
-                        ),
                   ),
                   const SizedBox(height: 18),
-                  TextFormField(
+                  buildTextFormField(
                     controller: _passwordConfirmController,
-                    textAlign: TextAlign.center,
+                    hintText: 'Confirmation mot de passe',
                     obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: 'Confirmation mot de passe',
-                      filled: true,
-                      fillColor: GlobalColors.tertiaryColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Confirmer votre mot de passe';
                       }
                       return null;
                     },
-                    style: GoogleFonts.poppins(
-                        color: GlobalColors.textColor,
-                        fontSize: 15 // set the text color
-                        ),
                   ),
                   const SizedBox(height: 16),
                   ElevatedButton(
-                    onPressed: () async {
+                    onPressed: () {
                       if (_formKey.currentState!.validate() &&
                           _passwordController.text.trim() ==
                               _passwordConfirmController.text.trim()) {
@@ -198,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         size: 15,
                       ),
                       Text(
-                        " Cette parte est reservée aux agriculteurs",
+                        " Cette partie est réservée aux agriculteurs",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                           color: Colors.red,
@@ -209,7 +141,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 10),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/login');
+                    },
                     child: Column(
                       children: [
                         Row(
@@ -222,24 +156,17 @@ class _RegisterPageState extends State<RegisterPage> {
                                 fontSize: 12,
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.pushReplacementNamed(
-                                    context, '/login');
-                              },
-                              child: Text(
-                                'Se connecter !',
-                                style: GoogleFonts.poppins(
-                                  color: GlobalColors.notificationColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
+                            Text(
+                              'Se connecter !',
+                              style: GoogleFonts.poppins(
+                                color: GlobalColors.notificationColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
                               ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 60),
-                        // powered by GEEKS CODE
                         Text(
                           'Powered by GEEKS CODE',
                           style: GoogleFonts.poppins(
@@ -259,39 +186,63 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void registerUser() async {
-    String userEmail = '';
-    String userPhone = '';
-    // get the input value
-    String userInput = _userMailController.text.trim();
-// check if the input value is an email or a phone number
-    if (isEmail(userInput)) {
-      userEmail = userInput;
-      userPhone = '*';
-    } else if (isPhone(userInput)) {
-      userEmail = '*';
-      userPhone = userInput;
-    } else {
-      // handle invalid input value
-    }
-    // Call the register function
+  TextFormField buildTextFormField({
+    required TextEditingController controller,
+    required String hintText,
+    bool obscureText = false,
+    String? Function(String?)? validator,
+  }) {
+    return TextFormField(
+      controller: controller,
+      textAlign: TextAlign.center,
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        hintText: hintText,
+        filled: true,
+        fillColor: GlobalColors.tertiaryColor,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+      ),
+      validator: validator,
+      style: GoogleFonts.poppins(
+        color: GlobalColors.textColor,
+        fontSize: 15,
+      ),
+    );
+  }
 
-    ApiResponse response = await register(_userNameController.text.trim(),
-        userEmail, userPhone, 'farmer', _passwordController.text.trim(), '0');
+  void registerUser() async {
+    ApiResponse response = await register(
+      _userNameController.text.trim(),
+      _userInfoController.text.trim(),
+      'farmer',
+      _passwordController.text.trim(),
+      '0',
+    );
+
+    print(response.data);
     if (response.data != null) {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const LoginPage()),
-          (route) => false);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Compte créé!Veuillez vous connecter"),
-      ));
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+        (route) => false,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Compte créé ! Veuillez vous connecter"),
+        ),
+      );
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text("Création échouée"),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Création échouée"),
+        ),
+      );
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const LoginPage()),
-          (route) => false);
+        MaterialPageRoute(builder: (context) => const RegisterPage()),
+        (route) => false,
+      );
     }
   }
 }

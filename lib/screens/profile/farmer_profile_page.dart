@@ -10,7 +10,8 @@ import '../../widgets/farmers/farmer_top_bar_widget.dart';
 import '../login/login_page.dart';
 
 class FarmerProfilePage extends StatefulWidget {
-  const FarmerProfilePage({super.key});
+  const FarmerProfilePage({Key? key}) : super(key: key);
+
   @override
   _FarmerProfilePageState createState() => _FarmerProfilePageState();
 }
@@ -18,13 +19,15 @@ class FarmerProfilePage extends StatefulWidget {
 class _FarmerProfilePageState extends State<FarmerProfilePage> {
   var info;
   String username = '';
-  String email = '';
+  String userinfo = '';
+  bool isLoading = true;
+
   void logoutUser(BuildContext context) async {
     ApiResponse response = await logout();
     if (response.data != null) {
       Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => const LoginPage()),
-        (route) => false,
+            (route) => false,
       );
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -41,16 +44,17 @@ class _FarmerProfilePageState extends State<FarmerProfilePage> {
   }
 
   void getUserInfo() async {
+    setState(() {
+      isLoading = true;
+    });
+
     ApiResponse response = await getUser();
     if (response.data != null) {
       setState(() {
         info = response.data;
         username = info['username'];
-        if (info['email'] == '*') {
-          email = info['phone_number'];
-        } else {
-          email = info['email'];
-        }
+        userinfo = info['userinfo'];
+        isLoading = false;
       });
     }
   }
@@ -65,7 +69,7 @@ class _FarmerProfilePageState extends State<FarmerProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const FarmerTopBarWidget(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         title: 'Profile',
         sub_title: 'Agriculteur',
         notification_icon: Icon(Icons.notifications_outlined),
@@ -78,12 +82,15 @@ class _FarmerProfilePageState extends State<FarmerProfilePage> {
       body: Scaffold(
         backgroundColor: GlobalColors.whiteColor,
         body: Center(
-          child: Column(
+          child: isLoading
+              ? CircularProgressIndicator()
+              : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ProfileImageWidget(
-                  profile_image: Image.asset('assets/images/profile.jpg')),
+                  profile_image:
+                  Image.asset('assets/images/profile.jpg')),
               const SizedBox(height: 20),
               Text(
                 username,
@@ -95,14 +102,50 @@ class _FarmerProfilePageState extends State<FarmerProfilePage> {
               ),
               const SizedBox(height: 15),
               Text(
-                email,
+                userinfo,
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   color: GlobalColors.textColor,
                 ),
               ),
               const SizedBox(height: 15),
-              /*Row(
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  logoutUser(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: GlobalColors.logoutColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 40, vertical: 17),
+                ),
+                child: Text(
+                  'Se deconnecter',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 60),
+              Text(
+                'Powered by GEEKS CODE',
+                style: GoogleFonts.poppins(
+                  fontSize: 12,
+                  color: const Color.fromARGB(101, 77, 99, 70),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -136,38 +179,3 @@ class _FarmerProfilePageState extends State<FarmerProfilePage> {
                   ),
                 ],
               ),*/
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  logoutUser(context);
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: GlobalColors.logoutColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 40, vertical: 17),
-                ),
-                child: Text(
-                  'Se deconnecter',
-                  style: GoogleFonts.poppins(
-                    fontSize: 16,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 60),
-              Text(
-                'Powered by GEEKS CODE',
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  color: const Color.fromARGB(101, 77, 99, 70),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
