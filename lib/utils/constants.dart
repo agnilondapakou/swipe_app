@@ -15,4 +15,4 @@ class GlobalColors {
 }
 
 // Api Url
-String apiUrl = '';
+String apiUrl = 'http://192.168.1.168:8000/api';
