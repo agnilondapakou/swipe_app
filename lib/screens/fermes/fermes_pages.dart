@@ -110,7 +110,7 @@ class _FermePageState extends State<FermePage> {
                             ferme_name: item['farm_name'],
                             city: item['city'],
                             update_route: '',
-                            delete_route: '',
+                            delete_route: "farms/${item['id']}",
                           ),
                       ],
                     ),

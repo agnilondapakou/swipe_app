@@ -31,3 +31,30 @@ Future<ApiResponse> getFarms() async {
   }
   return apiResponse;
 }
+
+Future<ApiResponse> deleteFarmById(String type)  async {
+  ApiResponse apiResponse = ApiResponse();
+  try {
+    String url = '$apiUrl/$type';
+    final response = await http.delete(
+      Uri.parse(url),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      },
+    );
+    if (response != null) {
+      if (response.statusCode == 200) {
+        apiResponse.data = jsonDecode(response.body);
+      } else {
+        throw Exception('Failed to deleted farm');
+      }
+    } else {
+      print("Failed to get a response from the server");
+    }
+  } catch (e) {
+    apiResponse.error = "Server error";
+  }
+
+  return apiResponse;
+}
