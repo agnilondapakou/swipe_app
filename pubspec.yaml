@@ -48,7 +48,6 @@ dependencies:
   permission_handler: ^10.2.0
   baseflow_plugin_template: ^2.1.1
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
