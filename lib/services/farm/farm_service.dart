@@ -58,3 +58,44 @@ Future<ApiResponse> deleteFarmById(String type)  async {
 
   return apiResponse;
 }
+
+Future<ApiResponse> registerFarmById(
+    String farm_name,
+    String city,
+    double longitude,
+    double latitude,
+    ) async {
+  ApiResponse apiResponse = ApiResponse();
+  try {
+    String url = '$apiUrl/farms/$userId';
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: jsonEncode(
+          {
+            'farm_name': farm_name,
+            'city': city,
+            'longitude': longitude,
+            'latitude': latitude,
+          }
+      ),
+    );
+    print(response.statusCode);
+    if (response != null) {
+      if (response.statusCode == 201) {
+        apiResponse.data = jsonDecode(response.body);
+      } else {
+        throw Exception('Failed to register');
+      }
+    } else {
+      print("Failed to get a response from the server");
+    }
+  } catch (e) {
+    apiResponse.error = "Server error";
+  }
+
+  return apiResponse;
+}

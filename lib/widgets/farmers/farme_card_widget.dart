@@ -1,35 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import '../../models/api_response.dart';
 import '../../screens/fermes/fermes_pages.dart';
 import '../../services/farm/farm_service.dart';
 
 class FermeCardWidget extends StatefulWidget {
-  // ignore: non_constant_identifier_names
   final String ferme_name;
   final String city;
-  // ignore: non_constant_identifier_names
-  //final String phone_number;
-  // ignore: non_constant_identifier_names
   final String delete_route;
-  // ignore: non_constant_identifier_names
   final String update_route;
 
-  FermeCardWidget(
-      {
-        // ignore: non_constant_identifier_names
-        required this.ferme_name,
-        required this.city,
-        // ignore: non_constant_identifier_names
-        //required this.phone_number,
-        // ignore: non_constant_identifier_names
-        required this.delete_route,
-        // ignore: non_constant_identifier_names
-        required this.update_route,
-        // ignore: non_constant_identifier_names
-        super.key});
-
+  const FermeCardWidget({
+    required this.ferme_name,
+    required this.city,
+    required this.delete_route,
+    required this.update_route,
+    Key? key,
+  }) : super(key: key);
   @override
   _FermeCardWidgetState createState() => _FermeCardWidgetState();
 }
@@ -51,6 +40,25 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
       });
     }
   }
+
+  void showConfirmationDialog() {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.WARNING,
+      animType: AnimType.SCALE,
+      title: 'Confirmation',
+      desc: 'Êtes-vous sûr de vouloir supprimer cette ferme ?',
+      btnCancelText: 'Annuler',
+      btnCancelColor: GlobalColors.primaryColor, // Change the cancel button color
+      btnOkText: 'Supprimer',
+      btnOkColor: GlobalColors.logoutColor, // Change the delete button color
+      btnCancelOnPress: () {},
+      btnOkOnPress: () {
+        deleteFarm(widget.delete_route);
+      },
+    ).show();
+  }
+
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState> ();
 
@@ -187,8 +195,7 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
       child: Column(
         children: [
           Padding(
-            padding:
-            const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 15),
+            padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -217,13 +224,6 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
                         color: GlobalColors.textColor,
                       ),
                     ),
-                    /*Text(
-                      'Téléphone :',
-                      style: GoogleFonts.poppins(
-                        fontSize: 15,
-                        color: GlobalColors.textColor,
-                      ),
-                    ),*/
                   ],
                 ),
                 const SizedBox(width: 5),
@@ -244,13 +244,6 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
                         color: GlobalColors.textColor,
                       ),
                     ),
-                    /*Text(
-                      widget.phone_number,
-                      style: GoogleFonts.poppins(
-                        fontSize: 15,
-                        color: GlobalColors.textColor,
-                      ),
-                    ),*/
                   ],
                 ),
               ],
@@ -306,7 +299,7 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
                       ),
                       TextButton(
                         onPressed: () {
-                          deleteFarm(widget.delete_route);
+                          showConfirmationDialog();
                         },
                         child: Text(
                           'Supprimer',
