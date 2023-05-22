@@ -19,8 +19,14 @@ class FermePage extends StatefulWidget {
 }
 
 class _FermePageState extends State<FermePage> {
+  final TextEditingController productNameController =
+  TextEditingController();
+  final TextEditingController quantityController =
+  TextEditingController();
   List<dynamic> farmList = [];
   bool isLoading = true;
+  double longitude = 0;
+  double latitude = 0;
 
   Future<void> getFarmInfo() async {
     setState(() {
@@ -46,182 +52,187 @@ class _FermePageState extends State<FermePage> {
   }
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Future<void> getCurrentLocationWithPermissionDialog() async {
-    final permission = await Geolocator.requestPermission();
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text("Permission Required"),
-          content: Text("Please enable location permission in settings."),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text("OK"),
-            ),
-          ],
-        ),
-      );
-    } else {
-      // Location permission granted, continue with getting current location
-      Position position = await Geolocator.getCurrentPosition();
-      // Do something with the position (e.g., store in a variable or pass it to another function)
-      // ...
-    }
-  }
 
   Future<void> newFarmDialog(BuildContext context) async {
     return await showDialog(
       context: context,
       builder: (context) {
-        final TextEditingController productNameController =
-        TextEditingController();
-        final TextEditingController quantityController =
-        TextEditingController();
-
         return StatefulBuilder(builder: (context, setState) {
           return AlertDialog(
-            content: Form(
-              key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "Nouvelle ferme",
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      color: GlobalColors.textColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  TextFormField(
-                    controller: productNameController,
-                    decoration: InputDecoration(
-                      hintText: 'Nom de la ferme',
-                      filled: true,
-                      fillColor: GlobalColors.tertiaryColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Entrez le nom de la ferme';
-                      }
-                      return null;
-                    },
-                    style: GoogleFonts.poppins(
-                      color: GlobalColors.textColor,
-                      fontSize: 15,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    controller: quantityController,
-                    decoration: InputDecoration(
-                      hintText: 'Ville',
-                      filled: true,
-                      fillColor: GlobalColors.tertiaryColor,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Entrez la ville';
-                      }
-                      return null;
-                    },
-                    style: GoogleFonts.poppins(
-                        color: GlobalColors.textColor,
-                        fontSize: 15 // set the text color
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      await getCurrentLocationWithPermissionDialog();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: GlobalColors.navBarItemColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(80),
-                      ),
-                    ),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width / 4,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: GlobalColors.primaryColor,
-                            size: 20,
-                          ),
-                          Text(
-                            'Ma Position',
-                            style: GoogleFonts.poppins(
-                              fontSize: 12,
-                              color: GlobalColors.primaryColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // submit form
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: GlobalColors.primaryColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      minimumSize: const Size(double.infinity, 55),
-                    ),
-                    child: Text(
-                      'Enregistrer',
+            content: SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Nouvelle ferme",
+                      textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
-                        fontSize: 20,
+                        color: GlobalColors.textColor,
                         fontWeight: FontWeight.bold,
+                        fontSize: 15,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.info_outline_rounded,
-                        color: Colors.red,
-                        size: 15,
-                      ),
-                      Text(
-                        " Veuillez activer la localisation",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.poppins(
-                          color: Colors.red,
-                          fontSize: 11,
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: productNameController,
+                      decoration: InputDecoration(
+                        hintText: 'Nom de la ferme',
+                        filled: true,
+                        fillColor: GlobalColors.tertiaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Entrez le nom de la ferme';
+                        }
+                        return null;
+                      },
+                      style: GoogleFonts.poppins(
+                        color: GlobalColors.textColor,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      controller: quantityController,
+                      decoration: InputDecoration(
+                        hintText: 'Ville',
+                        filled: true,
+                        fillColor: GlobalColors.tertiaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Entrez la ville';
+                        }
+                        return null;
+                      },
+                      style: GoogleFonts.poppins(
+                          color: GlobalColors.textColor,
+                          fontSize: 15 // set the text color
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        LocationPermission permission = await Geolocator.checkPermission();
+                        if (permission == LocationPermission.denied) {
+                          permission = await Geolocator.requestPermission();
+                          if (permission == LocationPermission.deniedForever) {
+                            throw Exception('Location Not Available');
+                          }
+                        } else {
+                          if (permission == LocationPermission.whileInUse ||
+                              permission == LocationPermission.always) {
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return  Center(
+                                  child: SpinKitChasingDots(
+                                    color: Colors.green,
+                                    size: 30.0,
+                                  ), // Show a loading indicator
+                                );
+                              },
+                            );
+
+                            try {
+                              Position position = await Geolocator.getCurrentPosition();
+                              longitude = position.longitude;
+                              latitude = position.latitude;
+                              Navigator.pop(context); // Close the loading indicator dialog
+                            } catch (e) {
+                              Navigator.pop(context); // Close the loading indicator dialog
+                              throw Exception('Error getting location: $e');
+                            }
+                          }
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: GlobalColors.navBarItemColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80),
+                        ),
+                      ),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width /
+                            4, // Set the desired width
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: GlobalColors.primaryColor,
+                              size: 20,
+                            ),
+                            Text(
+                              'Ma Position',
+                              style: GoogleFonts.poppins(
+                                fontSize: 12,
+                                color: GlobalColors.primaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        registerFarm();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: GlobalColors.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        minimumSize: const Size(double.infinity, 55),
+                      ),
+                      child: Text(
+                        'Enregistrer',
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.info_outline_rounded,
+                          color: Colors.red,
+                          size: 15,
+                        ),
+                        Text(
+                          " Veuillez activer la localisation",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            color: Colors.red,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -287,29 +298,48 @@ class _FermePageState extends State<FermePage> {
               Flexible(
                 child: isLoading
                     ? const Center(
-                  child: SpinKitChasingDots(
-                    color: Colors.green,
-                    size: 30.0,
-                  ),
-                )
-                    : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      for (var item in farmList)
-                        FermeCardWidget(
-                          ferme_name: item['farm_name'],
-                          city: item['city'],
-                          update_route: '',
-                          delete_route: "farms/${item['id']}",
+                        child: SpinKitChasingDots(
+                          color: Colors.green,
+                          size: 30.0,
                         ),
-                    ],
-                  ),
-                ),
+                      )
+                    : SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            for (var item in farmList)
+                              FermeCardWidget(
+                                ferme_name: item['farm_name'],
+                                city: item['city'],
+                                update_route: '',
+                                delete_route: "farms/${item['id']}",
+                              ),
+                          ],
+                        ),
+                      ),
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void registerFarm() async{
+    ApiResponse response = await registerFarmById(
+        productNameController.text.trim(),
+        quantityController.text.trim(),
+        longitude,
+      latitude
+    );
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => const FermePage()),
+          (route) => false,
+    );    getFarmInfo();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Enregistrement effectué avec succès!"),
+      ),
+    );
+    print(response.data);
   }
 }
