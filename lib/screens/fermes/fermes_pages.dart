@@ -43,6 +43,124 @@ class _FermePageState extends State<FermePage> {
     getFarmInfo();
   }
 
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState> ();
+
+  Future<void> newFarmDialog(BuildContext context) async {
+    return await showDialog(context: context,
+        builder: (context) {
+          final TextEditingController productNameController = TextEditingController();
+          final TextEditingController quantityController = TextEditingController();
+
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Novelle ferme",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                        color: GlobalColors.textColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    TextFormField(
+                      controller: productNameController,
+                      decoration: InputDecoration(
+                        hintText: 'Nom de la ferme',
+                        filled: true,
+                        fillColor: GlobalColors.tertiaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Entrez le nom de la ferme';
+                        }
+                        return null;
+                      },
+                      style: GoogleFonts.poppins(
+                        color: GlobalColors.textColor,
+                        fontSize: 15,
+                      ),
+                    ),
+                    const SizedBox(height: 10,),
+                    TextFormField(
+                      controller: quantityController,
+                      decoration: InputDecoration(
+                        hintText: 'Ville',
+                        filled: true,
+                        fillColor: GlobalColors.tertiaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Entrez la ville';
+                        }
+                        return null;
+                      },
+                      style: GoogleFonts.poppins(
+                          color: GlobalColors.textColor,
+                          fontSize: 15 // set the text color
+                      ),
+                    ),
+                    const SizedBox(height: 10,),
+                    ElevatedButton(
+                      onPressed: () async {
+                        // submit form
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: GlobalColors.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        minimumSize: const Size(double.infinity, 55),
+                      ),
+                      child: Text(
+                        'Enregistrer',
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.info_outline_rounded,
+                          color: Colors.red,
+                          size: 15,
+                        ),
+                        Text(
+                          " Veuillez activer la localisation",
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.poppins(
+                            color: Colors.red,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          });
+        }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,8 +200,8 @@ class _FermePageState extends State<FermePage> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TextButton(
-                onPressed: () {
-                  // new popup with form to add an recolte
+                onPressed: () async {
+                  await newFarmDialog(context);
                 },
                 child: Text(
                   "Nouvelle ferme",
@@ -103,17 +221,19 @@ class _FermePageState extends State<FermePage> {
                         size: 30.0,
                       ),
                     )
-                  : Column(
-                      children: [
-                        for (var item in farmList)
-                          FermeCardWidget(
-                            ferme_name: item['farm_name'],
-                            city: item['city'],
-                            update_route: '',
-                            delete_route: "farms/${item['id']}",
-                          ),
-                      ],
-                    ),
+                  : SingleChildScrollView(
+                    child: Column(
+                        children: [
+                          for (var item in farmList)
+                            FermeCardWidget(
+                              ferme_name: item['farm_name'],
+                              city: item['city'],
+                              update_route: '',
+                              delete_route: "farms/${item['id']}",
+                            ),
+                        ],
+                      ),
+                  ),
             ),
           ],
         ),
