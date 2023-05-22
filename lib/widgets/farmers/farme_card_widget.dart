@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
+import '../../models/api_response.dart';
+import '../../screens/fermes/fermes_pages.dart';
+import '../../services/farm/farm_service.dart';
 
-class FermeCardWidget extends StatelessWidget {
+class FermeCardWidget extends StatefulWidget {
   // ignore: non_constant_identifier_names
   final String ferme_name;
   final String city;
@@ -15,17 +18,39 @@ class FermeCardWidget extends StatelessWidget {
 
   const FermeCardWidget(
       {
-      // ignore: non_constant_identifier_names
-      required this.ferme_name,
-      required this.city,
-      // ignore: non_constant_identifier_names
-      //required this.phone_number,
-      // ignore: non_constant_identifier_names
-      required this.delete_route,
-      // ignore: non_constant_identifier_names
-      required this.update_route,
-      // ignore: non_constant_identifier_names
-      super.key});
+        // ignore: non_constant_identifier_names
+        required this.ferme_name,
+        required this.city,
+        // ignore: non_constant_identifier_names
+        //required this.phone_number,
+        // ignore: non_constant_identifier_names
+        required this.delete_route,
+        // ignore: non_constant_identifier_names
+        required this.update_route,
+        // ignore: non_constant_identifier_names
+        super.key});
+
+  @override
+  _FermeCardWidgetState createState() => _FermeCardWidgetState();
+}
+
+class _FermeCardWidgetState extends State<FermeCardWidget> {
+  void deleteFarm(String type) async {
+    ApiResponse response = await deleteFarmById(type);
+    if (response.data != null) {
+      setState(() {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const FermePage()),
+              (route) => false,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Ferme supprimée avec succès"),
+          ),
+        );
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +70,7 @@ class FermeCardWidget extends StatelessWidget {
         children: [
           Padding(
             padding:
-                const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 15),
+            const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -88,21 +113,21 @@ class FermeCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      ferme_name,
+                      widget.ferme_name,
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         color: GlobalColors.textColor,
                       ),
                     ),
                     Text(
-                      city,
+                      widget.city,
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         color: GlobalColors.textColor,
                       ),
                     ),
                     /*Text(
-                      phone_number,
+                      widget.phone_number,
                       style: GoogleFonts.poppins(
                         fontSize: 15,
                         color: GlobalColors.textColor,
@@ -134,7 +159,7 @@ class FermeCardWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, update_route);
+                          deleteFarm(widget.update_route);
                         },
                         child: Text(
                           'Modifier',
@@ -163,7 +188,7 @@ class FermeCardWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, delete_route);
+                          deleteFarm(widget.delete_route);
                         },
                         child: Text(
                           'Supprimer',
