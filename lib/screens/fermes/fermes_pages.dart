@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:swipe_app/services/farm/farm_service.dart';
 
@@ -19,10 +20,8 @@ class FermePage extends StatefulWidget {
 }
 
 class _FermePageState extends State<FermePage> {
-  final TextEditingController productNameController =
-  TextEditingController();
-  final TextEditingController quantityController =
-  TextEditingController();
+  final TextEditingController productNameController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
   List<dynamic> farmList = [];
   bool isLoading = true;
   double longitude = 0;
@@ -101,7 +100,7 @@ class _FermePageState extends State<FermePage> {
                       height: 10,
                     ),
                     TextFormField(
-                      controller: quantityController,
+                      controller: cityController,
                       decoration: InputDecoration(
                         hintText: 'Ville',
                         filled: true,
@@ -118,8 +117,8 @@ class _FermePageState extends State<FermePage> {
                         return null;
                       },
                       style: GoogleFonts.poppins(
-                          color: GlobalColors.textColor,
-                          fontSize: 15 // set the text color
+                        color: GlobalColors.textColor,
+                        fontSize: 15,
                       ),
                     ),
                     const SizedBox(
@@ -127,36 +126,42 @@ class _FermePageState extends State<FermePage> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        LocationPermission permission = await Geolocator.checkPermission();
-                        if (permission == LocationPermission.denied) {
-                          permission = await Geolocator.requestPermission();
-                          if (permission == LocationPermission.deniedForever) {
-                            throw Exception('Location Not Available');
-                          }
-                        } else {
-                          if (permission == LocationPermission.whileInUse ||
-                              permission == LocationPermission.always) {
-                            showDialog(
-                              context: context,
-                              barrierDismissible: false,
-                              builder: (BuildContext context) {
-                                return  Center(
-                                  child: SpinKitChasingDots(
-                                    color: Colors.green,
-                                    size: 30.0,
-                                  ), // Show a loading indicator
-                                );
-                              },
-                            );
+                        if (_formKey.currentState!.validate()) {
+                          LocationPermission permission =
+                          await Geolocator.checkPermission();
+                          if (permission == LocationPermission.denied) {
+                            permission = await Geolocator.requestPermission();
+                            if (permission == LocationPermission.deniedForever) {
+                              throw Exception('Location Not Available');
+                            }
+                          } else {
+                            if (permission == LocationPermission.whileInUse ||
+                                permission == LocationPermission.always) {
+                              showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (BuildContext context) {
+                                  return Center(
+                                    child: SpinKitChasingDots(
+                                      color: Colors.green,
+                                      size: 30.0,
+                                    ), // Show a loading indicator
+                                  );
+                                },
+                              );
 
-                            try {
-                              Position position = await Geolocator.getCurrentPosition();
-                              longitude = position.longitude;
-                              latitude = position.latitude;
-                              Navigator.pop(context); // Close the loading indicator dialog
-                            } catch (e) {
-                              Navigator.pop(context); // Close the loading indicator dialog
-                              throw Exception('Error getting location: $e');
+                              try {
+                                Position position =
+                                await Geolocator.getCurrentPosition();
+                                longitude = position.longitude;
+                                latitude = position.latitude;
+                                Navigator.pop(
+                                    context); // Close the loading indicator dialog
+                              } catch (e) {
+                                Navigator.pop(
+                                    context); // Close the loading indicator dialog
+                                throw Exception('Error getting location: $e');
+                              }
                             }
                           }
                         }
@@ -195,7 +200,43 @@ class _FermePageState extends State<FermePage> {
                     ),
                     ElevatedButton(
                       onPressed: () async {
-                        registerFarm();
+                        if (_formKey.currentState!.validate() &&
+                            longitude != null &&
+                            latitude != null) {
+                          registerFarm();
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text(
+                                  'Erreur',
+                                  style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                content: Text(
+                                  'Veuillez remplir tous les champs et obtenir votre position avant de pouvoir enregistrer.',
+                                  style: GoogleFonts.poppins(),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(
+                                      'OK',
+                                      style: TextStyle(
+                                        color: GlobalColors.primaryColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: GlobalColors.primaryColor,
@@ -295,27 +336,46 @@ class _FermePageState extends State<FermePage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Flexible(
+              Expanded(
                 child: isLoading
                     ? const Center(
-                        child: SpinKitChasingDots(
-                          color: Colors.green,
-                          size: 30.0,
-                        ),
-                      )
-                    : SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            for (var item in farmList)
-                              FermeCardWidget(
-                                ferme_name: item['farm_name'],
-                                city: item['city'],
-                                update_route: '',
-                                delete_route: "farms/${item['id']}",
-                              ),
-                          ],
+                  child: SpinKitChasingDots(
+                    color: Colors.green,
+                    size: 30.0,
+                  ),
+                )
+                    : farmList.isEmpty
+                    ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Lottie.asset(
+                        'assets/animations/search_empty.json',
+                        height: 200,
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Aucune ferme disponible',
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          color: GlobalColors.textColor,
                         ),
                       ),
+                    ],
+                  ),
+                )
+                    : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (var item in farmList)
+                        FermeCardWidget(
+                          ferme_name: item['farm_name'],
+                          city: item['city'],
+                          update_route: "farms/${item['id']}",
+                          delete_route: "farms/${item['id']}",
+                        ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
@@ -323,18 +383,17 @@ class _FermePageState extends State<FermePage> {
       ),
     );
   }
-
-  void registerFarm() async{
+  void registerFarm() async {
     ApiResponse response = await registerFarmById(
         productNameController.text.trim(),
-        quantityController.text.trim(),
+        cityController.text.trim(),
         longitude,
-      latitude
-    );
+        latitude);
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(builder: (context) => const FermePage()),
-          (route) => false,
-    );    getFarmInfo();
+      (route) => false,
+    );
+    getFarmInfo();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Enregistrement effectué avec succès!"),
