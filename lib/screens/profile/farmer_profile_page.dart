@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/services/auth/auth_service.dart';
 import 'package:swipe_app/utils/constants.dart';
@@ -83,7 +84,10 @@ class _FarmerProfilePageState extends State<FarmerProfilePage> {
         backgroundColor: GlobalColors.whiteColor,
         body: Center(
           child: isLoading
-              ? CircularProgressIndicator()
+              ? const SpinKitChasingDots(
+            color: Colors.green,
+            size: 30.0,
+          )
               : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.center,
