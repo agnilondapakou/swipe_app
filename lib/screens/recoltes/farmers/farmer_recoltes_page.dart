@@ -15,8 +15,8 @@ class FarmerRecoltesPage extends StatefulWidget {
 }
 
 class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
-  DateTime _selectedDate = DateTime.now();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState> ();
+  DateTime _selectedDate = DateTime.now();
 
   Future<void> newRecolteDialog(BuildContext context) async {
     return await showDialog(context: context,
@@ -92,7 +92,6 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                     const SizedBox(height: 10,),
                     TextFormField(
                       controller: startDateController,
-                      keyboardType: TextInputType.number,
                       readOnly: true,
                       decoration: InputDecoration(
                         hintText: startDateController.text,
@@ -110,7 +109,43 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                             firstDate: DateTime(2023),
                             lastDate: DateTime(2100)
                         );
+                        // startDateController.text = DateFormat('yyyy-MM-dd').format(selectedDate);
                       },
+
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Entrez choisir une date';
+                        }
+                        return null;
+                      },
+                      style: GoogleFonts.poppins(
+                          color: GlobalColors.textColor,
+                          fontSize: 15 // set the text color
+                      ),
+                    ),
+                    const SizedBox(height: 10,),
+                    TextFormField(
+                      controller: startDateController,
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        hintText: startDateController.text,
+                        filled: true,
+                        fillColor: GlobalColors.tertiaryColor,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                      onTap: () async {
+                        DateTime? selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2023),
+                            lastDate: DateTime(2100)
+                        );
+                        // startDateController.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+                      },
+
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Entrez choisir une date';
@@ -146,6 +181,7 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                 ),
               ),
             );
+
           });
         }
     );
