@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:swipe_app/screens/carte/carte_page.dart';
 import 'package:swipe_app/screens/drivers/entreprise/drivers_page.dart';
 import 'package:swipe_app/screens/drivers/farmer/farmer_drivers_page.dart';
@@ -30,6 +31,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [
+        Locale('en'),
+        Locale('fr'),
+      ],
       debugShowCheckedModeBanner: false,
       home: const WelcomePage(),
       initialRoute: '/',

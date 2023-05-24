@@ -20,7 +20,7 @@ class FermePage extends StatefulWidget {
 }
 
 class _FermePageState extends State<FermePage> {
-  final TextEditingController productNameController = TextEditingController();
+  final TextEditingController farmNameController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
   List<dynamic> farmList = [];
   bool isLoading = true;
@@ -75,7 +75,7 @@ class _FermePageState extends State<FermePage> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
-                      controller: productNameController,
+                      controller: farmNameController,
                       decoration: InputDecoration(
                         hintText: 'Nom de la ferme',
                         filled: true,
@@ -385,7 +385,7 @@ class _FermePageState extends State<FermePage> {
   }
   void registerFarm() async {
     ApiResponse response = await registerFarmById(
-        productNameController.text.trim(),
+        farmNameController.text.trim(),
         cityController.text.trim(),
         longitude,
         latitude);
