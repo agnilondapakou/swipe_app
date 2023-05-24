@@ -26,7 +26,7 @@ class FermeCardWidget extends StatefulWidget {
 }
 
 class _FermeCardWidgetState extends State<FermeCardWidget> {
-  TextEditingController productNameController = TextEditingController();
+  TextEditingController farmNameController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   var info;
   double longitude = 0;
@@ -51,7 +51,7 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
   void updateFarm(int farmId) async {
     ApiResponse response = await updateFarmById(
         farmId,
-        productNameController.text.trim(),
+        farmNameController.text.trim(),
         cityController.text.trim(),
         longitude,
         latitude);
@@ -114,7 +114,7 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
     String city = info['city'];
     String long = info['longitude'];
     String lat = info['latitude'];
-    productNameController = TextEditingController(text: farmName);
+    farmNameController = TextEditingController(text: farmName);
     cityController = TextEditingController(text: city);
     longitude = double.parse(long);
     latitude = double.parse(lat);
@@ -140,7 +140,7 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
                     ),
                     const SizedBox(height: 10),
                     TextFormField(
-                      controller: productNameController,
+                      controller: farmNameController,
                       decoration: InputDecoration(
                         hintText: 'Nom de la ferme',
                         filled: true,
