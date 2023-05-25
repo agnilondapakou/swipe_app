@@ -8,7 +8,7 @@ import '../../models/user_model.dart';
 import '../../utils/constants.dart';
 
   const storage = FlutterSecureStorage();
-var token = '';
+var tokenUser = '';
 int userId = 0;
   Future<ApiResponse> login(String identifier, String password) async {
     ApiResponse apiResponse = ApiResponse();
@@ -28,7 +28,7 @@ int userId = 0;
         if (response.statusCode == 201) {
           final data = jsonDecode(response.body);
           apiResponse.data = data;
-          token = data['session']['token'];
+          tokenUser = data['session']['token'];
           userId = data['session']['user_id'];
         } else {
           final errors = jsonDecode(response.body);
@@ -103,7 +103,7 @@ int userId = 0;
         },
         body: jsonEncode(
             {
-              'token': token,
+              'token': tokenUser,
             }
         ),
       );
@@ -123,13 +123,23 @@ int userId = 0;
     return apiResponse;
   }
 
-  Future<String?> isLoggedIn() async {
-    // Vérification de la présence du token dans le secure storage pour déterminer si l'utilisateur est connecté ou non
-    final token = await storage.read(key: 'token');
-    return token;
+Future<ApiResponse> isLoggedIn() async {
+  ApiResponse apiResponse = ApiResponse();
+  // Vérification de la présence du token dans le secure storage pour déterminer si l'utilisateur est connecté ou non
+  final token = tokenUser;
+  if (token != null && token.isNotEmpty && token != '') {
+    // Utilisateur connecté, récupérer les informations de l'utilisateur
+     apiResponse = await getUser();
+    if (apiResponse.data != null) {
+      // Retourner les informations de l'utilisateur
+      return apiResponse;
+    }
   }
+  return apiResponse; // Utilisateur non connecté 70962490
+}
 
-  Future<ApiResponse> getUser() async {
+
+Future<ApiResponse> getUser() async {
     ApiResponse apiResponse = ApiResponse();
     try {
       String url = '$apiUrl/users/$userId';

@@ -15,7 +15,7 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
   Future<void> loadUserInfo() async {
-    String? token = await isLoggedIn();
+    String? token = (await isLoggedIn()) as String?;
     if(token == ''){
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>const LoginPage()), (route) => false);
     }
