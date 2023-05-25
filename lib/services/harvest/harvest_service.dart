@@ -62,12 +62,13 @@ Future<ApiResponse> deleteHarvestById(String type)  async {
 Future<ApiResponse> registerHarvestById(
     String product_name,
     String product_qty,
-    double start_date,
-    double end_date,
+    String start_date,
+    String end_date,
+    String farmId
     ) async {
   ApiResponse apiResponse = ApiResponse();
   try {
-    String url = '$apiUrl/harvests/$userId';
+    String url = '$apiUrl/harvests/$farmId';
     final response = await http.post(
       Uri.parse(url),
       headers: {
