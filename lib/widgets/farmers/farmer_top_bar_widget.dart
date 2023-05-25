@@ -100,7 +100,7 @@ class FarmerTopBarWidget extends StatelessWidget
         IconButton(
           icon: profile_icon,
           onPressed: () {
-            Navigator.pushNamed(context, '/farmers/profile');
+            Navigator.pushNamed(context, '/carte');
           },
         ),
       ],

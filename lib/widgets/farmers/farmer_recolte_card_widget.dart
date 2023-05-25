@@ -104,8 +104,8 @@ class _FarmerRecolteCardWidgetState extends State<FarmerRecolteCardWidget> {
             children: [
               const Image(
                 image: AssetImage('assets/icons/tree.png'),
-                width: 100,
-                height: 100,
+                width: 60,
+                height: 60,
               ),
               const SizedBox(width: 5),
               Column(
