@@ -19,9 +19,12 @@ import 'package:swipe_app/screens/recoltes/farmers/farmer_recoltes_page.dart';
 import 'package:swipe_app/screens/register/register.dart';
 import 'package:swipe_app/screens/search/search_page.dart';
 import 'package:swipe_app/screens/welcome/welcome_page.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  runApp(const MyApp());
+  initializeDateFormatting('fr_FR', null).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
