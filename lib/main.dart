@@ -31,11 +31,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      supportedLocales: const [
-        Locale('en'),
-        Locale('fr'),
-      ],
       debugShowCheckedModeBanner: false,
       home: const WelcomePage(),
       initialRoute: '/',

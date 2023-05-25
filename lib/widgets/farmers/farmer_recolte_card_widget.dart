@@ -1,39 +1,75 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:swipe_app/services/harvest/harvest_service.dart';
 import 'package:swipe_app/utils/constants.dart';
 
-class FarmerRecolteCardWidget extends StatelessWidget {
-  // ignore: non_constant_identifier_names
+import '../../models/api_response.dart';
+import '../../screens/recoltes/farmers/farmer_recoltes_page.dart';
+
+class FarmerRecolteCardWidget extends StatefulWidget {
   final String product_name;
-  // ignore: non_constant_identifier_names
   final String farm_name;
   final int quantity;
   final String period;
-  // ignore: non_constant_identifier_names
   final String delete_route;
-  // ignore: non_constant_identifier_names
   final String update_route;
-  // ignore: non_constant_identifier_names
   final String button_text;
-  // ignore: non_constant_identifier_names
   final Color bg_color;
 
-  const FarmerRecolteCardWidget(
-      // ignore: non_constant_identifier_names
-      {required this.product_name,
-      // ignore: non_constant_identifier_names
-      required this.farm_name,
-      required this.quantity,
-      required this.period,
-      // ignore: non_constant_identifier_names
-      required this.delete_route,
-      // ignore: non_constant_identifier_names
-      required this.update_route,
-      // ignore: non_constant_identifier_names
-      required this.button_text,
-      // ignore: non_constant_identifier_names
-      required this.bg_color,
-      super.key});
+  const FarmerRecolteCardWidget({
+    required this.product_name,
+    required this.farm_name,
+    required this.quantity,
+    required this.period,
+    required this.delete_route,
+    required this.update_route,
+    required this.button_text,
+    required this.bg_color,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _FarmerRecolteCardWidgetState createState() => _FarmerRecolteCardWidgetState();
+}
+
+class _FarmerRecolteCardWidgetState extends State<FarmerRecolteCardWidget> {
+
+  void deleteHarvest(String type) async {
+    ApiResponse response = await deleteHarvestById(type);
+    if (response.data != null) {
+      setState(() {
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const FarmerRecoltesPage()),
+              (route) => false,
+        );
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Récolte supprimée avec succès"),
+          ),
+        );
+      });
+    }
+  }
+
+  void showConfirmationDialog() {
+    AwesomeDialog(
+      context: context,
+      dialogType: DialogType.WARNING,
+      animType: AnimType.SCALE,
+      title: 'Confirmation',
+      desc: 'Êtes-vous sûr de vouloir supprimer cette récolte ?',
+      btnCancelText: 'Annuler',
+      btnCancelColor:
+      GlobalColors.primaryColor, // Change the cancel button color
+      btnOkText: 'Supprimer',
+      btnOkColor: GlobalColors.logoutColor, // Change the delete button color
+      btnCancelOnPress: () {},
+      btnOkOnPress: () {
+        deleteHarvest(widget.delete_route);
+      },
+    ).show();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +90,7 @@ class FarmerRecolteCardWidget extends StatelessWidget {
           Row(
             children: [
               const Image(
-                image: AssetImage(
-                  'assets/icons/tree.png',
-                ),
+                image: AssetImage('assets/icons/tree.png'),
                 width: 100,
                 height: 100,
               ),
@@ -99,28 +133,28 @@ class FarmerRecolteCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    product_name,
+                    widget.product_name,
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
-                    farm_name,
+                    widget.farm_name,
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
-                    quantity.toString(),
+                    widget.quantity.toString(),
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
                     ),
                   ),
                   Text(
-                    period,
+                    widget.period,
                     style: GoogleFonts.poppins(
                       fontSize: 15,
                       color: GlobalColors.textColor,
@@ -151,7 +185,7 @@ class FarmerRecolteCardWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, update_route);
+                          Navigator.pushNamed(context, widget.update_route);
                         },
                         child: Text(
                           'Modifier',
@@ -180,7 +214,7 @@ class FarmerRecolteCardWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, delete_route);
+                          showConfirmationDialog();
                         },
                         child: Text(
                           'Supprimer',

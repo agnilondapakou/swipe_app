@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:lottie/lottie.dart';
 import 'package:swipe_app/services/harvest/harvest_service.dart';
 
 import '../../../models/api_response.dart';
@@ -28,6 +26,7 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
   final TextEditingController startDateController = TextEditingController();
   final TextEditingController endDateController = TextEditingController();
   DateTime selectedDate = DateTime.now();
+
   List<dynamic> harvestList = [];
   bool isLoading = true;
   Future<void> getHarvestInfo() async {
@@ -169,7 +168,6 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                       onTap: () async {
                         final DateTime? picked = await showDatePicker(
                           context: context,
-                          locale: const Locale("fr", "FR"),
                           initialDate: selectedDate ?? DateTime.now(),
                           firstDate: DateTime(1900),
                           lastDate: DateTime(2100),
@@ -234,7 +232,6 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                       onTap: () async {
                         final DateTime? picked = await showDatePicker(
                           context: context,
-                          locale: const Locale("fr", "FR"),
                           initialDate: selectedDate ?? DateTime.now(),
                           firstDate: DateTime(1900),
                           lastDate: DateTime(2100),
@@ -282,7 +279,7 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Sélectionnez la date fin';
+                          return 'Sélectionnez la date de fin';
                         }
                         return null;
                       },
@@ -376,115 +373,124 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: GlobalMaterialLocalizations.delegates,
-      supportedLocales: const [
-        Locale('en'),
-        Locale('fr'),
-      ],
-      home: Scaffold(
-        backgroundColor: GlobalColors.whiteColor,
-        appBar: const FarmerTopBarWidget(
-          automaticallyImplyLeading: false,
-          title: 'Recoltes',
-          sub_title: 'Agriculteur',
-          notification_icon: Icon(Icons.notifications_outlined),
-          profile_icon: Icon(Icons.person_outline_rounded),
-          notification_counter: '0',
-        ),
-        bottomNavigationBar: FarmerNavBarWidget(
-          selectedIndex: 1,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: RefreshIndicator(
-            onRefresh: getHarvestInfo,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TopIconsWidget(
-                      header_image: Image.asset(
-                        'assets/icons/tree.png',
+    return Scaffold(
+      backgroundColor: GlobalColors.whiteColor,
+      appBar: const FarmerTopBarWidget(
+        automaticallyImplyLeading: false,
+        title: 'Recoltes',
+        sub_title: 'Agriculteur',
+        notification_icon: Icon(Icons.notifications_outlined),
+        profile_icon: Icon(Icons.person_outline_rounded),
+        notification_counter: '0',
+      ),
+      bottomNavigationBar: FarmerNavBarWidget(
+        selectedIndex: 1,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(15),
+        child: RefreshIndicator(
+          onRefresh: getHarvestInfo,
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TopIconsWidget(
+                    header_image: Image.asset(
+                      'assets/icons/tree.png',
+                    ),
+                    desciption: "Annocez vos produits prêts à être récoltés",
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Container(
+                width: MediaQuery.of(context).size.width - 200,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: GlobalColors.primaryColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextButton(
+                  onPressed: () async {
+                    await newHarvestDialog(context);
+                  },
+                  child: Text(
+                    "Nouvelle recolte",
+                    style: GoogleFonts.poppins(
+                      fontSize: 15,
+                      color: GlobalColors.whiteColor,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Expanded(
+                child: isLoading
+                    ? const Center(
+                  child: SpinKitChasingDots(
+                    color: Colors.green,
+                    size: 30.0,
+                  ),
+                )
+                    : harvestList.isEmpty
+                    ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Lottie.asset(
+                        'assets/animations/search_empty.json',
+                        height: 200,
                       ),
-                      desciption: "Annocez vos produits prêts à être récoltés",
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  width: MediaQuery.of(context).size.width - 200,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: GlobalColors.primaryColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: TextButton(
-                    onPressed: () async {
-                      await newHarvestDialog(context);
-                    },
-                    child: Text(
-                      "Nouvelle recolte",
-                      style: GoogleFonts.poppins(
-                        fontSize: 15,
-                        color: GlobalColors.whiteColor,
+                      const SizedBox(height: 10),
+                      Text(
+                        'Aucune récolte disponible',
+                        style: GoogleFonts.poppins(
+                          fontSize: 15,
+                          color: GlobalColors.textColor,
+                        ),
                       ),
-                    ),
+                    ],
+                  ),
+                )
+                    : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (var item in harvestList)
+                        FarmerRecolteCardWidget(
+                          product_name: item["product_name"],
+                          farm_name: item["farm_name"],
+                          quantity: item["product_qty"],
+                          period: formatDateRange(item["start_date"], item["end_date"]),
+                          delete_route: "harvests/${item['id']}",
+                          update_route: "harvests/${item['id']}",
+                          bg_color: GlobalColors.logoutColor,
+                          button_text: "Retirer l'annonce",
+                        ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 10),
-                Expanded(
-                  child: isLoading
-                      ? const Center(
-                    child: SpinKitChasingDots(
-                      color: Colors.green,
-                      size: 30.0,
-                    ),
-                  )
-                      : harvestList.isEmpty
-                      ? SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Lottie.asset(
-                          'assets/animations/search_empty.json',
-                          height: 200,
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Aucune récolte disponible',
-                          style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            color: GlobalColors.textColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                      : SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        for (var item in harvestList)
-                          FarmerRecolteCardWidget(
-                            product_name: item["product_name"],
-                            farm_name: "Djidjole",
-                            quantity: item["product_qty"],
-                            period: "02-25 Mars 2023",
-                            delete_route: '',
-                            update_route: '',
-                            bg_color: GlobalColors.logoutColor,
-                            button_text: "Retirer l'annonce",
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
+
+  String formatDateRange(String startDate, String endDate) {
+    // Format the start date
+    DateTime parsedStartDate = DateTime.parse(startDate);
+    String formattedStartDate = DateFormat('dd-').format(parsedStartDate);
+
+    // Format the end date
+    DateTime parsedEndDate = DateTime.parse(endDate);
+    String formattedEndDate = DateFormat('dd MMMM y').format(parsedEndDate);
+
+    // Combine the formatted start date and end date
+    String formattedDateRange = '$formattedStartDate$formattedEndDate';
+
+    return formattedDateRange;
+  }
+
+
 }

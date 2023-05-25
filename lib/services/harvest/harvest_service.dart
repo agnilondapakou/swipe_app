@@ -9,7 +9,7 @@ import '../auth/auth_service.dart';
 Future<ApiResponse> getHarvests() async {
   ApiResponse apiResponse = ApiResponse();
   try {
-    String url = '$apiUrl/harvests/$userId';
+    String url = '$apiUrl/harvests/farmer/$userId';
     final response = await http.get(
       Uri.parse(url),
       headers: {
