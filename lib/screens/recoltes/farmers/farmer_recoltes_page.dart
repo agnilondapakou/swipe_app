@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:swipe_app/services/harvest/harvest_service.dart';
 
 import '../../../models/api_response.dart';
+import '../../../services/farm/farm_service.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/entreprise/top_icons_widget.dart';
 import '../../../widgets/farmers/farmer_nav_bar_widget.dart';
@@ -28,6 +29,7 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
   DateTime selectedDate = DateTime.now();
 
   List<dynamic> harvestList = [];
+  List<dynamic> farmList = [];
   bool isLoading = true;
   Future<void> getHarvestInfo() async {
     setState(() {
@@ -45,10 +47,22 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
       });
     }
   }
+  Future<void> getFarmInfo() async {
+    ApiResponse response = await getFarms();
+    if (response.data != null) {
+      setState(() {
+        final info = response.data;
+        if (info != null) {
+          farmList = List<dynamic>.from(info as List<dynamic>);
+        }
+      });
+    }
+  }
   @override
   void initState() {
     super.initState();
     getHarvestInfo();
+    getFarmInfo();
   }
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -90,20 +104,19 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                           borderSide: BorderSide.none,
                         ),
                       ),
-                      items: const [
-                        DropdownMenuItem<String>(
-                          value: 'ferme1',
-                          child: Text('Ferme 1'),
-                        ),
-                        DropdownMenuItem<String>(
-                          value: 'ferme2',
-                          child: Text('Ferme 2'),
-                        ),
-                        // Add more DropdownMenuItem as needed
-                      ],
+                      items: farmList.map<DropdownMenuItem<String>>((dynamic item) {
+                        final farmName = item['farm_name'] as String;
+                        final farmId = item['id'].toString();
+                        return DropdownMenuItem<String>(
+                          value: farmId,
+                          child: Text(farmName),
+                        );
+                      }).toList(),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Sélectionnez une ferme';
+                        } else{
+                          print(value);
                         }
                         return null;
                       },
@@ -294,6 +307,7 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
                     ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
+                          registerHarvest();
                         } else {
                           showDialog(
                             context: context,
@@ -480,17 +494,37 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
   String formatDateRange(String startDate, String endDate) {
     // Format the start date
     DateTime parsedStartDate = DateTime.parse(startDate);
-    String formattedStartDate = DateFormat('dd-').format(parsedStartDate);
+    String formattedStartDate = DateFormat('dd MMMM - ', 'fr_FR').format(parsedStartDate);
 
     // Format the end date
     DateTime parsedEndDate = DateTime.parse(endDate);
-    String formattedEndDate = DateFormat('dd MMMM y').format(parsedEndDate);
+    String formattedEndMonth = DateFormat('dd MMMM', 'fr_FR').format(parsedEndDate).substring(0, 7);
+    String formattedEndyear = DateFormat('y', 'fr_FR').format(parsedEndDate);
 
     // Combine the formatted start date and end date
-    String formattedDateRange = '$formattedStartDate$formattedEndDate';
+    String formattedDateRange = ' $formattedStartDate$formattedEndMonth $formattedEndyear';
 
     return formattedDateRange;
   }
 
-
-}
+  Future<void> registerHarvest() async {
+    ApiResponse response = await registerHarvestById(
+        productNameController.text.trim(),
+        productQtyController.text.trim(),
+        startDateController.text.trim(),
+        endDateController.text.trim(),
+        selectedFarmName!
+    );
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => const FarmerRecoltesPage()),
+          (route) => false,
+    );
+    getHarvestInfo();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Enregistrement effectué avec succès!"),
+      ),
+    );
+    print(response.data);
+  }
+  }
