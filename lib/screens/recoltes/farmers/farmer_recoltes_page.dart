@@ -494,14 +494,15 @@ class _FarmerRecoltesPageState extends State<FarmerRecoltesPage> {
   String formatDateRange(String startDate, String endDate) {
     // Format the start date
     DateTime parsedStartDate = DateTime.parse(startDate);
-    String formattedStartDate = DateFormat('dd-').format(parsedStartDate);
+    String formattedStartDate = DateFormat('dd MMMM - ', 'fr_FR').format(parsedStartDate);
 
     // Format the end date
     DateTime parsedEndDate = DateTime.parse(endDate);
-    String formattedEndDate = DateFormat('dd MMMM y').format(parsedEndDate);
+    String formattedEndMonth = DateFormat('dd MMMM', 'fr_FR').format(parsedEndDate).substring(0, 7);
+    String formattedEndyear = DateFormat('y', 'fr_FR').format(parsedEndDate);
 
     // Combine the formatted start date and end date
-    String formattedDateRange = '$formattedStartDate$formattedEndDate';
+    String formattedDateRange = ' $formattedStartDate$formattedEndMonth $formattedEndyear';
 
     return formattedDateRange;
   }
