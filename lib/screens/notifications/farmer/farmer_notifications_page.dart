@@ -42,6 +42,7 @@ class _FarmerNotificationPageState extends State<FarmerNotificationPage> {
                 notificationTitle: 'Nouvelle recolte en vue...',
                 notificationBody:
                     'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                date: "2023/02/05",
               ),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",
@@ -50,6 +51,7 @@ class _FarmerNotificationPageState extends State<FarmerNotificationPage> {
                 notificationTitle: 'Nouvelle recolte en vue...',
                 notificationBody:
                     'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                date: "2023/02/05",
               ),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",
@@ -58,6 +60,7 @@ class _FarmerNotificationPageState extends State<FarmerNotificationPage> {
                 notificationTitle: 'Nouvelle recolte en vue...',
                 notificationBody:
                     'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                date: "2023/02/05",
               ),
               NotificationWidget(
                 message: "Nouvelle recolte en vue...",
@@ -66,6 +69,7 @@ class _FarmerNotificationPageState extends State<FarmerNotificationPage> {
                 notificationTitle: 'Nouvelle recolte en vue...',
                 notificationBody:
                     'lorem ipsum dolore sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                date: "2023/02/05",
               ),
             ],
           ),

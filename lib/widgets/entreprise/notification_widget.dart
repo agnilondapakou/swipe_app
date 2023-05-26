@@ -7,6 +7,7 @@ import 'custom_rext_tween.dart';
 
 class NotificationWidget extends StatelessWidget {
   final String message;
+  final String date;
   final String route;
   final Color activeColor;
   final String notificationTitle;
@@ -15,6 +16,7 @@ class NotificationWidget extends StatelessWidget {
   const NotificationWidget({
     super.key,
     required this.message,
+    required this.date,
     required this.route,
     required this.activeColor,
     required this.notificationTitle,
@@ -26,11 +28,11 @@ class NotificationWidget extends StatelessWidget {
     return GestureDetector(
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.all(5),
         decoration: BoxDecoration(
           color: GlobalColors.whiteColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15), bottomLeft: Radius.circular(15)),
           boxShadow: [
             BoxShadow(
               color: const Color.fromARGB(194, 0, 0, 0).withOpacity(0.3),
@@ -45,7 +47,7 @@ class NotificationWidget extends StatelessWidget {
           children: [
             Icon(
               Icons.circle_notifications_rounded,
-              color: GlobalColors.notificationColor,
+              color: activeColor,
               size: 30.0,
             ),
             Text(
@@ -53,14 +55,22 @@ class NotificationWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 color: GlobalColors.textColor,
-                fontSize: 16.0,
+                fontSize: 13.0,
               ),
             ),
-            Icon(
-              Icons.circle,
-              color: activeColor,
-              size: 10.0,
+            Text(
+              date,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(
+                color: GlobalColors.textColor,
+                fontSize: 9.0,
+              ),
             ),
+            // Icon(
+            //   Icons.circle,
+            //   color: activeColor,
+            //   size: 10.0,
+            // ),
           ],
         ),
       ),
@@ -91,7 +101,7 @@ class _AddNotificationDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.all(12.0),
         child: Hero(
           tag: _heroAddTodo,
           createRectTween: (begin, end) {
@@ -99,9 +109,9 @@ class _AddNotificationDialog extends StatelessWidget {
           },
           child: Material(
             color: GlobalColors.whiteColor,
-            elevation: 2,
+            elevation: 0,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),

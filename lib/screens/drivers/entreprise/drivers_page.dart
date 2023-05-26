@@ -25,7 +25,7 @@ class _DriversPageState extends State<DriversPage> {
         sub_title: 'Entreprise',
         notification_icon: Icon(Icons.notifications_outlined),
         profile_icon: Icon(Icons.person_outline_rounded),
-        notification_counter: '0',
+        notification_counter: 0,
       ),
       bottomNavigationBar: NavBarWidget(
         selectedIndex: 5,

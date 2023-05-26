@@ -374,8 +374,8 @@ class _FermeCardWidgetState extends State<FermeCardWidget> {
                   image: AssetImage(
                     'assets/icons/ferme.png',
                   ),
-                  width: 70,
-                  height: 70,
+                  width: 60,
+                  height: 60,
                 ),
                 const SizedBox(width: 5),
                 Column(

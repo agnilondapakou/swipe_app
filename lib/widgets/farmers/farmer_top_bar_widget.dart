@@ -66,7 +66,7 @@ class FarmerTopBarWidget extends StatelessWidget
               IconButton(
                 icon: notification_icon,
                 onPressed: () {
-                  Navigator.pushNamed(context, '/farmers/notifications');
+                  Navigator.pushNamed(context, '/notifications');
                 },
               ),
               Positioned(

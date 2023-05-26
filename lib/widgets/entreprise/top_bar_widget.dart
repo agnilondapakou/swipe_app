@@ -12,7 +12,7 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
   // ignore: non_constant_identifier_names
   final Icon profile_icon;
   // ignore: non_constant_identifier_names
-  final String notification_counter;
+  final int notification_counter;
   const TopBarWidget({
     super.key,
     required this.title,
@@ -80,9 +80,9 @@ class TopBarWidget extends StatelessWidget implements PreferredSizeWidget {
                     minHeight: 16,
                   ),
                   child: Text(
-                    notification_counter,
+                    notification_counter.toString(),
                     style: GoogleFonts.poppins(
-                      color: GlobalColors.whiteColor,
+                      color: GlobalColors.primaryColor,
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),

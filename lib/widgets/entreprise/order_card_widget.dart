@@ -51,8 +51,8 @@ class OrderCardWidget extends StatelessWidget {
                 image: AssetImage(
                   'assets/icons/package.png',
                 ),
-                width: 100,
-                height: 100,
+                width: 60,
+                height: 60,
               ),
               const SizedBox(width: 5),
               Column(
@@ -124,6 +124,7 @@ class OrderCardWidget extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 10,),
           Container(
             width: MediaQuery.of(context).size.width - 50,
             height: 40,
