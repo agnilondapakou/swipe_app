@@ -46,7 +46,8 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     getHarvestInfo();
-    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,7 +166,7 @@ class _SearchPageState extends State<SearchPage> {
                         farm_name: item["farm_name"],
                         quantity: item["product_qty"],
                         period: formatDateRange(item["start_date"], item["end_date"]),
-                        route: '/login',
+                        harvest_id: '${item['id']}',
                         bg_color: GlobalColors.primaryColor,
                         button_text: "Annoncer un achat",
                       ),
