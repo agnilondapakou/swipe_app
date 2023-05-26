@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:swipe_app/models/api_response.dart';
+import 'package:swipe_app/screens/orders/entreprise/orders_page.dart';
 import 'package:swipe_app/screens/search/search_page.dart';
 import 'package:swipe_app/services/harvest/harvest_service.dart';
 import 'package:swipe_app/utils/constants.dart';
@@ -16,6 +18,8 @@ class OrderCardWidget extends StatefulWidget {
   final int quantity;
   final String period;
   final String harvest_id;
+  final String order_id;
+  final bool delete;
   // ignore: non_constant_identifier_names
   final String button_text;
   // ignore: non_constant_identifier_names
@@ -29,6 +33,8 @@ class OrderCardWidget extends StatefulWidget {
       required this.quantity,
       required this.period,
       required this.harvest_id,
+        required this.order_id,
+      required this.delete,
       // ignore: non_constant_identifier_names
       required this.button_text,
       // ignore: non_constant_identifier_names
@@ -418,8 +424,12 @@ class _OrderCardWidgetState extends State<OrderCardWidget> {
             ),
             child: TextButton(
               onPressed: () async {
-                errorMessage = "";
-                await newOrderDialog(context);
+                if(widget.delete == true){
+                  deleteOrder();
+                }else{
+                  errorMessage = "";
+                  await newOrderDialog(context);
+                }
               },
               child: Text(
                 widget.button_text,
@@ -466,6 +476,21 @@ class _OrderCardWidgetState extends State<OrderCardWidget> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text("Commande effectuée avec succès!"),
+      ),
+    );
+    print(response.data);
+  }
+
+  Future<void> deleteOrder() async {
+    ApiResponse response = await deleteOrderById(widget.order_id);
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => const OrdersPage()),
+          (route) => false,
+    );
+    getOrders();
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text("Suppression effectuée avec succès!"),
       ),
     );
     print(response.data);

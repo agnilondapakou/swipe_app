@@ -167,6 +167,8 @@ class _SearchPageState extends State<SearchPage> {
                         quantity: item["product_qty"],
                         period: formatDateRange(item["start_date"], item["end_date"]),
                         harvest_id: '${item['id']}',
+                        delete: false,
+                        order_id: "",
                         bg_color: GlobalColors.primaryColor,
                         button_text: "Annoncer un achat",
                       ),
