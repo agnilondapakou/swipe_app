@@ -2,17 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_app/utils/constants.dart';
 
-class FarmerDriverCardWidget extends StatelessWidget {
+class FarmerDriverCardWidget extends StatefulWidget {
   // ignore: non_constant_identifier_names
-  final String driver_first_name;
+  final String driver_username;
   // ignore: non_constant_identifier_names
-  final String driver_last_name;
-  // ignore: non_constant_identifier_names
-  final String driver_email;
-  // ignore: non_constant_identifier_names
-  final String driver_phone_number;
-  // ignore: non_constant_identifier_names
-  final int delivery_count;
+  final String driver_contact;
   // ignore: non_constant_identifier_names
   final String delete_route;
   // ignore: non_constant_identifier_names
@@ -20,15 +14,9 @@ class FarmerDriverCardWidget extends StatelessWidget {
 
   const FarmerDriverCardWidget(
       // ignore: non_constant_identifier_names
-      {required this.driver_first_name,
+      {required this.driver_username,
       // ignore: non_constant_identifier_names
-      required this.driver_last_name,
-      // ignore: non_constant_identifier_names
-      required this.driver_email,
-      // ignore: non_constant_identifier_names
-      required this.driver_phone_number,
-      // ignore: non_constant_identifier_names
-      required this.delivery_count,
+      required this.driver_contact,
       // ignore: non_constant_identifier_names
       required this.delete_route,
       // ignore: non_constant_identifier_names
@@ -36,10 +24,15 @@ class FarmerDriverCardWidget extends StatelessWidget {
       super.key});
 
   @override
+  State<FarmerDriverCardWidget> createState() => _FarmerDriverCardWidgetState();
+}
+
+class _FarmerDriverCardWidgetState extends State<FarmerDriverCardWidget> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height / 4.5,
+      height: MediaQuery.of(context).size.height / 5.5,
       margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
         color: GlobalColors.whiteColor,
@@ -51,101 +44,76 @@ class FarmerDriverCardWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
-            children: [
-              const Image(
-                image: AssetImage(
-                  'assets/icons/delivery.png',
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                const Image(
+                  image: AssetImage(
+                    'assets/icons/delivery.png',
+                  ),
+                  width: 60,
+                  height: 60,
                 ),
-                width: 100,
-                height: 100,
-              ),
-              const SizedBox(width: 5),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Nom :',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
+                const SizedBox(width: 5),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Nom :',
+                      style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        color: GlobalColors.textColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Prenoms :',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
+                    Text(
+                      'Livraisons :',
+                      style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        color: GlobalColors.textColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Livraisons :',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
+                    Text(
+                      'Telephone :',
+                      style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        color: GlobalColors.textColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Email :',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
+                  ],
+                ),
+                const SizedBox(width: 5),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      widget.driver_username,
+                      style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        color: GlobalColors.textColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Telephone :',
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
+                    Text(
+                      "-",
+                      style: GoogleFonts.poppins(
+                        fontSize: 13,
+                        color: GlobalColors.textColor,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(width: 5),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    driver_first_name,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
+                    Text(
+                      widget.driver_contact,
+                      style: GoogleFonts.poppins(
+                        fontSize: 12,
+                        color: GlobalColors.textColor,
+                      ),
                     ),
-                  ),
-                  Text(
-                    driver_last_name,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
-                    ),
-                  ),
-                  Text(
-                    delivery_count.toString(),
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
-                    ),
-                  ),
-                  Text(
-                    driver_email,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
-                    ),
-                  ),
-                  Text(
-                    driver_phone_number,
-                    style: GoogleFonts.poppins(
-                      fontSize: 15,
-                      color: GlobalColors.textColor,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10, top: 8),
+            padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -165,7 +133,7 @@ class FarmerDriverCardWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, update_route);
+                          Navigator.pushNamed(context, widget.update_route);
                         },
                         child: Text(
                           'Modifier',
@@ -194,7 +162,7 @@ class FarmerDriverCardWidget extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, delete_route);
+                          Navigator.pushNamed(context, widget.delete_route);
                         },
                         child: Text(
                           'Supprimer',
